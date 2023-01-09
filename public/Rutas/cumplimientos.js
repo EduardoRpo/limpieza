@@ -12,7 +12,7 @@ firebase.initializeApp({
 var db = firebase.firestore();
 var auth = firebase.auth();
 
-function Mostrar() {
+function consultarFechas() {
     var tabl23 = document.getElementById("tabla");
 
 
@@ -39,7 +39,9 @@ function Mostrar() {
     contador19=0;
     contador20=0;
 
-    db.collection("Rutas").where("FecIni", ">=", '2023-01-01').get().then(function (querySnapshot) {
+    let fecha=document.getElementById('fecha').value;
+
+    db.collection("Rutas").where("FecIni", ">=", fecha).get().then(function (querySnapshot) {
         tabl23.innerHTML = "";
         querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
