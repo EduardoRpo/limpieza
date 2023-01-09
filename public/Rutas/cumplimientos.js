@@ -97,7 +97,7 @@ function consultarFechas() {
             let fechaIni = `${doc.data().FecIni}`;
 
 
-            db.collection("RegistroInforme").where("Documento", "==", Documento).where("Fecha",">=",'2022-01-01').orderBy('Fecha', 'asc').limit(1)
+            db.collection("RegistroInforme").where("Documento", "==", Documento).where("Fecha",">=",fecha).orderBy('Fecha', 'asc').limit(1)
                 .get()
                 .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
