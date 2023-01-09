@@ -1,0 +1,1679 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="https://limpiezaysoluciones.com.co/app/mobil/img/logo.png">
+    <title>Tablas</title>
+    <!--sweet alert-->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link REL=StyleSheet href="../estilo.css" type="text/css" media=screen>
+
+
+    <!--datables CSS básico-->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
+
+    <!--firebase-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+
+    <!--font-awenson-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+
+
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!---->
+
+
+    <!--datatable buttons-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cnd.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+</head>
+
+<body >
+    <nav class="navbar navbar-expand-lg navbar-light " style="background: #fff; border-bottom: 1px solid #2219a1; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); ">
+        <div class="container-fluid">
+            <a class="navbar-brand"  href="../index.html">
+                <img src="https://limpiezaysoluciones.com.co/app/mobil/img/logo.png" alt="" width="70"
+                    height="50" style="border-radius: 5%; background: #fff;" class="d-inline-block align-text-top"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNav">
+                <ul class="navbar-nav " style="margin-left: auto;">
+                    
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="#" data-bs-toggle='modal' data-bs-target='#signupModal'
+                            style="font-weight: bold; color: #f28367; display: none;" aria-current="page">Crear usuario</a>
+                    </li>
+                    <li class="nav-item" style="display: none;">
+                        <a class="nav-link" href="#" id="entrar" data-bs-toggle='modal' data-bs-target='#signinModal'
+                            style="font-weight: bold; color: #f28367;" aria-current="page">Entrar</a>
+                    </li>
+                    <li class="nav-item" style="display: none;">
+                        <a class="nav-link" href="#" id="logout" style="font-weight: bold; color: #f28367;"
+                            aria-current="page">Salir</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Modal registro -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevos usuarios</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form id="signup-form">
+                        <div class="form-group">
+                            <input type="text" id="signup-email" class="form-control" placeholder="Correo" required>
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="password" id="signup-password" class="form-control mt-2"
+                                placeholder="Contraseña (6 o más caracteres)" required>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary mt-3">Registar</button>
+
+
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal login -->
+    <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form id="signin-form">
+                        <div class="form-group">
+                            <input type="text" id="login-email" class="form-control" placeholder="Correo" required>
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="password" id="login-password" class="form-control mt-2"
+                                placeholder="Contraseña" required>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary mt-3">Ingresar</button>
+
+
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--card-->
+            <!--fin card body 1-->
+			<div class="container">
+
+				<h3 class="mt-3 text-center">Consultas FisicoQuimico</h3>
+
+				<div class="row" >
+
+					<div class="col" style="display: none;">
+						<div class="card mt-5 "
+							style=" margin-left: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+							<div class="card-header" style="text-align: center;">
+								<strong>Consulta por NIT</strong>
+		
+							</div>
+							<div class="card-body">
+		
+								<input type="text" id="nit" class="form-control " style="float: left;">
+								<input type="button" onclick="consultas()" class="btn btn-danger mt-2 prueba2" value="Consultar"
+									style="float: left; margin-left: 40%;">
+							</div>
+						</div>
+					</div>
+		
+		
+					<div class="col">
+						<div class="card mt-2 col-sm-4 text-center"
+							style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+							<div class="card-header" style="text-align: center;">
+								<strong>Consulta por fechas F.Q</strong>
+		
+							</div>
+							<div class="card-body">
+		
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="inputGroup-sizing-default">Desde:</span>
+									<input type="date" id="fecha" class="form-control ">
+								</div>
+		
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="inputGroup-sizing-default">Hasta:</span>
+									<input type="date" id="fecha2" class="form-control ">
+								</div>
+		
+		
+								<input type="button" onclick="consultarFechas()" class="btn btn-danger mt-2 prueba2"
+									value="Consultar" style="float: left; margin-left: 40%;">
+							</div>
+						</div>
+					</div>
+
+
+					
+		
+		
+					<!--totales-->
+					<div class="card"
+						style="margin-top: 1.5%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); display: none;">
+						<div class="card-body">
+							<h5 class="card-title">Indicadores</h5>
+		
+		
+		
+							<div class="input-group mb-3" style="width: 60%;">
+								<span class="input-group-text" id="inputGroup-sizing-default">Σ TOTAL:</span>
+								<input type="text" class="form-control" id="SumaTotal" aria-label="Sizing example input"
+									aria-describedby="inputGroup-sizing-default">
+		
+								<span class="input-group-text " style="margin-left: 1%;" id="inputGroup-sizing-default">%
+									Producto:</span>
+								<input type="text" class="form-control" id="porcenProduc" aria-label="Sizing example input"
+									aria-describedby="inputGroup-sizing-default">
+		
+								<input type="button" value="Calcular" style="margin-left: 2%;" onclick="indicadores()"
+									class="btn btn-primary">
+							</div>
+		
+							<input type="button" value="Limpiar" onclick="limpiar()" style="float: right; margin-left: 5px;"
+								class="btn btn-secondary">
+		
+							<input type="button" value="Fijar" onclick="fijar()" style="float: right; margin-left: 5px;"
+								class="btn btn-secondary">
+		
+							<input type="text" id="valorFijado" placeholder="Valor Fijado"
+								style="float: right; font-weight: bold; color: rgb(250, 7, 7); text-align: center;" disabled>
+		
+		
+						</div>
+					</div>
+		
+		
+					<!--inicio tabla-->
+					<div class="table-responsive mt-5 col-sm-12"
+						style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); ; background: #fff; border-radius: 5px;;">
+						<table id="example" class="table table-striped" style="width:100%; max-width: 100%;">
+							<thead>
+								<tr>
+									<th>Fecha</th>
+									<th>Nombre</th>
+		
+		
+									<th>Nit</th>
+		
+									<th>Centro Costos</th>
+									<th>Promedio</th>
+									<th>Zona1</th>
+									<th>Estado1</th>
+									<th>Zona2</th>
+									<th>Estado2</th>
+									<th>Zona3</th>
+									<th>Estado3</th>
+									<th>Zona4</th>
+		
+		
+									<th>Estado4</th>
+		
+									<th>Zona5</th>
+									<th>Estado5</th>
+									<th>Zona6</th>
+									<th>Estado6</th>
+									<th>Zona7</th>
+									<th>Estado7</th>
+									<th>Zona8</th>
+									<th>Estado8</th>
+		
+		
+									<th>Zona9</th>
+		
+									<th>Estado9</th>
+									<th>Zona10</th>
+									<th>Estado10</th>
+									<th>Zona11</th>
+									<th>Estado11</th>
+									
+								</tr>
+							</thead>
+							<tbody id="tabla">
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+		
+		
+								</tr>
+		
+							</tbody>
+		
+						</table>
+					</div>
+		
+					<!--fin tabla-->
+		
+		
+		
+				</div>
+
+				<div style="height: 10px; color:rgb(24, 23, 21); width: 5px;;"> </div>
+
+				<!--Consultas EPP-->
+				<h3 class="mt-3 text-center">Consultas EPP</h3>
+
+				<div class="row" >
+
+					<div class="col" style="display: none;">
+						<div class="card mt-5 "
+							style=" margin-left: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+							<div class="card-header" style="text-align: center;">
+								<strong>Consulta por NIT</strong>
+		
+							</div>
+							<div class="card-body">
+		
+								<input type="text" id="nit" class="form-control " style="float: left;">
+								<input type="button" onclick="consultas()" class="btn btn-danger mt-2 prueba2" value="Consultar"
+									style="float: left; margin-left: 40%;">
+							</div>
+						</div>
+					</div>
+		
+		
+					<div class="col">
+						<div class="card mt-2 col-sm-4 text-center"
+							style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+							<div class="card-header" style="text-align: center;">
+								<strong>Consulta por fechas EPP</strong>
+		
+							</div>
+							<div class="card-body">
+		
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="inputGroup-sizing-default">Desde:</span>
+									<input type="date" id="fechaEPP" class="form-control ">
+								</div>
+		
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="inputGroup-sizing-default">Hasta:</span>
+									<input type="date" id="fechaEPP2" class="form-control ">
+								</div>
+		
+		
+								<input type="button" onclick="consultarFechasEPP()" class="btn btn-danger mt-2 prueba2"
+									value="Consultar" style="float: left; margin-left: 40%;">
+							</div>
+						</div>
+					</div>
+
+
+					
+		
+		
+					<!--totales-->
+					<div class="card"
+						style="margin-top: 1.5%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); display: none;">
+						<div class="card-body">
+							<h5 class="card-title">Indicadores</h5>
+		
+		
+		
+							<div class="input-group mb-3" style="width: 60%;">
+								<span class="input-group-text" id="inputGroup-sizing-default">Σ TOTAL:</span>
+								<input type="text" class="form-control" id="SumaTotal" aria-label="Sizing example input"
+									aria-describedby="inputGroup-sizing-default">
+		
+								<span class="input-group-text " style="margin-left: 1%;" id="inputGroup-sizing-default">%
+									Producto:</span>
+								<input type="text" class="form-control" id="porcenProduc" aria-label="Sizing example input"
+									aria-describedby="inputGroup-sizing-default">
+		
+								<input type="button" value="Calcular" style="margin-left: 2%;" onclick="indicadores()"
+									class="btn btn-primary">
+							</div>
+		
+							<input type="button" value="Limpiar" onclick="limpiar()" style="float: right; margin-left: 5px;"
+								class="btn btn-secondary">
+		
+							<input type="button" value="Fijar" onclick="fijar()" style="float: right; margin-left: 5px;"
+								class="btn btn-secondary">
+		
+							<input type="text" id="valorFijado" placeholder="Valor Fijado"
+								style="float: right; font-weight: bold; color: rgb(250, 7, 7); text-align: center;" disabled>
+		
+		
+						</div>
+					</div>
+		
+		
+					<!--inicio tabla-->
+					<div class="table-responsive mt-5 col-sm-12"
+						style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); ; background: #fff; border-radius: 5px;;">
+						<table id="example2" class="table table-striped" style="width:100%; max-width: 100%;">
+							<thead>
+								<tr>
+									<th>Fecha</th>
+									<th>Documento</th>
+									<th>Nombre</th>
+									<th>Nit</th>
+									<th>Centro Costos</th>
+									<th>Elemento1</th>
+									<th>Cantidad1</th>
+									<th>Elemento2</th>
+									<th>Cantidad2</th>
+									<th>Elemento3</th>
+									<th>Cantidad3</th>
+									<th>Elemento4</th>
+									<th>Cantidad4</th>
+									<th>Elemento5</th>
+									<th>Cantidad5</th>
+									<th>Elemento6</th>
+									<th>Cantidad6</th>
+									<th>Elemento7</th>
+									<th>Cantidad7</th>
+									<th>Elemento8</th>
+									<th>Cantidad8</th>
+									<th>Elemento9</th>
+									<th>Cantidad9</th>
+									<th>Elemento10</th>
+									<th>Cantidad10</th>
+									<th>Elemento11</th>
+									<th>Cantidad11</th>
+									
+								</tr>
+							</thead>
+							<tbody id="tablaEPP">
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									
+									
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+		
+		
+								</tr>
+		
+							</tbody>
+		
+						</table>
+					</div>
+		
+					<!--fin tabla-->
+		
+		
+		
+				</div>
+				<!--fin Consultas EPP-->
+
+				<!------informe supervision-->
+
+				
+				<h3 class="mt-3 text-center">Informe de Supervisión</h3>
+
+				<div class="row" >
+
+					<div class="col" style="display: none;">
+						<div class="card mt-5 "
+							style=" margin-left: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+							<div class="card-header" style="text-align: center;">
+								<strong>Consulta por NIT</strong>
+		
+							</div>
+							<div class="card-body">
+		
+								<input type="text" id="nit" class="form-control " style="float: left;">
+								<input type="button" onclick="consultas()" class="btn btn-danger mt-2 prueba2" value="Consultar"
+									style="float: left; margin-left: 40%;">
+							</div>
+						</div>
+					</div>
+		
+					<div class="col">
+						<div class="card mt-2 col-sm-4 text-center"
+							style="  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+							<div class="card-header" style="text-align: center;">
+								<strong>Consulta Informes Supervisión</strong>
+		
+							</div>
+							<div class="card-body">
+		
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="inputGroup-sizing-default">Desde:</span>
+									<input type="date" id="fechaInfo" class="form-control ">
+								</div>
+		
+								<div class="input-group mb-3">
+									<span class="input-group-text" id="inputGroup-sizing-default">Hasta:</span>
+									<input type="date" id="fechaInfo2" class="form-control ">
+								</div>
+		
+		
+								<input type="button" onclick="consultarFechasInfo()" class="btn btn-danger mt-2 prueba2"
+									value="Consultar" style="float: left; margin-left: 20%;">
+
+									<input type="button" onclick="Prueba()" class="btn btn-success mt-2 prueba2"
+									value="Mostrar" style="float: left; margin-left: 5%;">
+
+									
+							</div>
+						</div>
+					</div>
+
+
+					
+		
+		
+					<!--totales-->
+					<div class="card"
+						style="margin-top: 1.5%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); display: none;">
+						<div class="card-body">
+							<h5 class="card-title">Indicadores</h5>
+		
+		
+		
+							<div class="input-group mb-3" style="width: 60%;">
+								<span class="input-group-text" id="inputGroup-sizing-default">Σ TOTAL:</span>
+								<input type="text" class="form-control" id="SumaTotal" aria-label="Sizing example input"
+									aria-describedby="inputGroup-sizing-default">
+		
+								<span class="input-group-text " style="margin-left: 1%;" id="inputGroup-sizing-default">%
+									Producto:</span>
+								<input type="text" class="form-control" id="porcenProduc" aria-label="Sizing example input"
+									aria-describedby="inputGroup-sizing-default">
+		
+								<input type="button" value="Calcular" style="margin-left: 2%;" onclick="indicadores2()"
+									class="btn btn-primary">
+							</div>
+		
+							<input type="button" value="Limpiar" onclick="limpiar()" style="float: right; margin-left: 5px;"
+								class="btn btn-secondary">
+		
+							<input type="button" value="Fijar" onclick="fijar2()" style="float: right; margin-left: 5px;"
+								class="btn btn-secondary">
+		
+							<input type="text" id="valorFijado" placeholder="Valor Fijado"
+								style="float: right; font-weight: bold; color: rgb(250, 7, 7); text-align: center;" disabled>
+		
+		
+						</div>
+					</div>
+		
+		
+					<!--inicio tabla-->
+					<div class="table-responsive mt-5 col-sm-12"
+						style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); ; background: #fff; border-radius: 5px;;">
+						<table id="example3" class="table table-striped" style="width:100%; max-width: 100%;">
+							<thead>
+								<tr>
+									<th>Fecha</th>
+									<th>Nombre</th>
+		
+		
+									<th>Nit</th>
+		
+									<th>Centro Costos</th>
+									<th>Promedio</th>
+									<th>Zona1</th>
+									<th>Estado1</th>
+									<th>Zona2</th>
+									<th>Estado2</th>
+									<th>Zona3</th>
+									<th>Estado3</th>
+									<th>Zona4</th>
+		
+		
+									<th>Estado4</th>
+		
+									<th>Zona5</th>
+									<th>Estado5</th>
+									<th>Zona6</th>
+									<th>Estado6</th>
+									<th>Zona7</th>
+									<th>Estado7</th>
+									<th>Zona8</th>
+									<th>Estado8</th>
+		
+		
+									<th>Zona9</th>
+		
+									<th>Estado9</th>
+									<th>Zona10</th>
+									<th>Estado10</th>
+									<th>Zona11</th>
+									<th>Estado11</th>
+									
+								</tr>
+							</thead>
+							<tbody id="tabla3">
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+		
+		
+								</tr>
+		
+							</tbody>
+		
+						</table>
+					</div>
+		
+					<!--fin tabla-->
+
+					<!--inicio tabla-->
+					<div class="table-responsive mt-5 col-sm-12"
+						style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); ; background: #fff; border-radius: 5px;">
+						<table id="example4" class="table table-striped" style="width:100%; max-width: 100%;">
+							<thead>
+								<tr>
+									<th>Fecha</th>
+									<th>Nombre</th>
+		
+		
+									<th>Nit</th>
+		
+									<th>Centro Costos</th>
+									<th>Promedio</th>
+									<th>Concepto1</th>
+									<th>Estado1</th>
+									<th>Concepto2</th>
+									<th>Estado2</th>
+									<th>Concepto3</th>
+									<th>Estado3</th>
+									<th>Concepto4</th>
+		
+		
+									<th>Estado4</th>
+		
+									<th>Concepto5</th>
+									<th>Estado5</th>
+									<th>Concepto6</th>
+									<th>Estado6</th>
+									<th>Concepto7</th>
+									<th>Estado7</th>
+									<th>Concepto8</th>
+									<th>Estado8</th>
+		
+		
+									<th>Concepto9</th>
+		
+									<th>Estado9</th>
+									<th>Concepto10</th>
+									<th>Estado10</th>
+									<th>Concepto11</th>
+									<th>Estado11</th>
+									<th>Concepto12</th>
+									<th>Estado12</th>
+									
+								</tr>
+							</thead>
+							<tbody id="tabla4">
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+		
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+		
+		
+		
+		
+		
+		
+		
+								</tr>
+		
+							</tbody>
+		
+						</table>
+					</div>
+		
+					<!--fin tabla-->
+		
+		
+		
+				</div>
+
+				<!---------------------------->
+			</div>
+
+           
+			<script src="https://code.jquery.com/jquery-3.6.0.js"
+			integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	
+	
+	
+		<script src="../plugins/sweetalert2/sweetalert2.all.min.js"></script>
+	
+	
+	
+	
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+			integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+			integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+			crossorigin="anonymous"></script>
+	
+		<!-- datatables JS -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+		<script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+	
+		<script src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap5.min.js"></script>
+	
+		<script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+		<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+	
+	
+	
+	
+	
+		<script
+			src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.templates.min.js"></script>
+	
+            <script src="indicadores.js"></script>
+
+</body>
+
+</html>
