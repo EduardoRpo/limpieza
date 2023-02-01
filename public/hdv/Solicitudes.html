@@ -206,9 +206,9 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="vacante">Vacante</span>
+                                    <span class="input-group-text" id="vacante1">Vacante</span>
                                     <input type="text" class="form-control" aria-label="Sizing example input"
-                                        aria-describedby="vacante">
+                                        aria-describedby="vacante1" id="vacante">
 
                                 </div>
 
@@ -216,9 +216,9 @@
                             <div class="col-8">
 
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="cargo">Cargo</span>
+                                    <span class="input-group-text" id="cargo1">Cargo</span>
                                     <input type="text" class="form-control" aria-label="Sizing example input"
-                                        aria-describedby="cargo">
+                                        aria-describedby="cargo1" id="cargo">
 
                                 </div>
 
@@ -233,9 +233,9 @@
                         <div class="row mt-3">
                             <div class="col-6">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="horario">Horario</span>
+                                    <span class="input-group-text" id="horario1">Horario</span>
                                     <input type="text" class="form-control" aria-label="Sizing example input"
-                                        aria-describedby="horario">
+                                        aria-describedby="horario1" id="horario">
 
                                 </div>
 
@@ -243,13 +243,29 @@
                             <div class="col-6">
 
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="finicio">Fecha Inicio</span>
+                                    <span class="input-group-text" id="finicio1">Fecha Inicio</span>
                                     <input type="date" class="form-control" aria-label="Sizing example input"
-                                        aria-describedby="finicio">
+                                        aria-describedby="finicio1" id="finicio">
 
                                 </div>
 
                             </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="">Area</span>
+                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                aria-describedby="finicio" id="area" list="listadoArea">
+                                
+                            <datalist id="listadoArea">
+                                <option id="53c911ea609252c600632dfe"
+                                value="RR.HH">
+                                RR.HH</option>
+                            <option id="53c911ea60925sdfs4e444eg"
+                                value="Administracion">
+                                Administracion</option>
+
+                            </datalist>
+
                         </div>
                         <hr>
                         <strong>Caracteristicas necesarias para la vacante:</strong>
@@ -414,9 +430,9 @@
                         </div>
 
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="centrocostos">Centro Costos</span>
+                            <span class="input-group-text" id="centrocostos1">Centro Costos</span>
                             <input type="text" class="form-control" aria-label="Sizing example input"
-                                aria-describedby="centrocostoss" list="costos">
+                                aria-describedby="centrocostos1" list="costos" id="centrocostos">
                                 <datalist id="costos">
 
                                      <option id="3c911ea609252c603qwq0632addfe"
@@ -1226,6 +1242,7 @@
                                 aria-describedby="inputGroup-sizing-default" id="vobo">
                         </div>
 
+                        <input type="button" value="Registrar" class="btn btn-success" onclick="Registrar()">
 
 
                         <!--fin contenido-->

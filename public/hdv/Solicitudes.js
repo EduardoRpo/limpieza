@@ -18,31 +18,32 @@ var auth = firebase.auth();
 const logout = document.querySelector("#logout");
 
 logout.addEventListener("click", (e) => {
-  e.preventDefault();
-  auth.signOut().then(() => {
-    console.log("ha salido");
+    e.preventDefault();
+    auth.signOut().then(() => {
+        console.log("ha salido");
 
-    location.reload();
-  });
+        location.reload();
+    });
 });
 
 //----------------login-----------------
 const signinForm = document.querySelector("#signin-form");
 
 signinForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const email = document.querySelector("#login-email").value;
-  const pasword = document.querySelector("#login-password").value;
+    const email = document.querySelector("#login-email").value;
+    const pasword = document.querySelector("#login-password").value;
 
-  //console.log(email, pasword);
+    //console.log(email, pasword);
 
-  auth.signInWithEmailAndPassword(email, pasword).then((userCredential) => {
-    signinForm.reset();
-    $("#signinModal").modal("hide");
-    console.log("si funciona");
-    document.getElementById("entrar").style.display = "none";
-  });
+    auth.signInWithEmailAndPassword(email, pasword).then((userCredential) => {
+        signinForm.reset();
+        $("#signinModal").modal("hide");
+        console.log("si funciona");
+        document.getElementById("entrar").style.display = "none";
+        document.getElementById('usuarioIni').value = email;
+    });
 });
 
 //----------------------actualizar consecutivo-----------
@@ -52,75 +53,212 @@ auth.onAuthStateChanged((user) => {
     console.log("el usuario es" + autorizadoPor);
     document.getElementById("usuario").value = autorizadoPor;
     if (user) {
-      db.collection("Requisiones")
-        .where("Numero", ">", 2150)
-        .orderBy("Numero", "asc")
-        .onSnapshot((querySnapshot) => {
-          querySnapshot.forEach(function (doc) {
-            // doc.data() is never undefined for query doc snapshots
-            //console.log(doc.id, " => ", doc.data());
-            var caso = Number(`${doc.data().Numero}`);
-            //var casoNuevo = 0;
-            // var casoNuevo = Number(caso + 1);
-            //---------------------------------------------------------------------------------.collection("Facturas").where("Caso", ">", 0).orderBy("Caso", "asc")
-            //var casoNuevo = 0;
-            //var casoNuevo = Number(caso + 1);
-            caso++;
-  
-            console.log(caso);
-            //alert(casoNuevo)
-            // document.getElementById('caso').value = casoNuevo;
-            document.getElementById("caso").value = caso;
-          });
-        });
-  
-      /*db.collection("ControlInterno")
-        .where("Estado", "==", "En Proceso")
-        .limit(200)
-        .onSnapshot((querySnapshot) => {
-          tabl.innerHTML = "";
-          querySnapshot.forEach(function (doc) {
-            // doc.data() is never undefined for query doc snapshots
-  
-            Numero = Number(`${doc.data().Numero}`);
-            Referencia1 = `${doc.data().Referencia}`;
-            Nombre = `${doc.data().Nombre}`;
-            Lote = `${doc.data().Lote}`;
-            Estado = `${doc.data().Estado}`;
-  
-            document.getElementById("logout").style.display = "block";
-  
-            tabl.innerHTML += `
-                        <tr>
-                        <td>${Numero}</td>
-                        <td>${Referencia1}</td>
-                        <td scope="row">${Nombre}</td>
-                   
+        db.collection("Requisiones")
+            .where("Numero", ">", 2150)
+            .orderBy("Numero", "asc")
+            .onSnapshot((querySnapshot) => {
+                querySnapshot.forEach(function (doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    //console.log(doc.id, " => ", doc.data());
+                    var caso = Number(`${doc.data().Numero}`);
+                    //var casoNuevo = 0;
+                    // var casoNuevo = Number(caso + 1);
+                    //---------------------------------------------------------------------------------.collection("Facturas").where("Caso", ">", 0).orderBy("Caso", "asc")
+                    //var casoNuevo = 0;
+                    //var casoNuevo = Number(caso + 1);
+                    caso++;
+
+                    console.log(caso);
+                    //alert(casoNuevo)
+                    // document.getElementById('caso').value = casoNuevo;
+                    document.getElementById("caso").value = caso;
+                });
+            });
+
+        /*db.collection("ControlInterno")
+          .where("Estado", "==", "En Proceso")
+          .limit(200)
+          .onSnapshot((querySnapshot) => {
+            tabl.innerHTML = "";
+            querySnapshot.forEach(function (doc) {
+              // doc.data() is never undefined for query doc snapshots
+    
+              Numero = Number(`${doc.data().Numero}`);
+              Referencia1 = `${doc.data().Referencia}`;
+              Nombre = `${doc.data().Nombre}`;
+              Lote = `${doc.data().Lote}`;
+              Estado = `${doc.data().Estado}`;
+    
+              document.getElementById("logout").style.display = "block";
+    
+              tabl.innerHTML += `
+                          <tr>
+                          <td>${Numero}</td>
+                          <td>${Referencia1}</td>
+                          <td scope="row">${Nombre}</td>
+                     
+                      
+                            <td>${Lote}</td>
+                            <td>${Estado}</td>
+                            
+                            
+                            
+                     
+        
                     
-                          <td>${Lote}</td>
-                          <td>${Estado}</td>
-                          
-                          
-                          
-                   
-      
-                  
-                    </tr>
-      
-               
-               
-                          `;
-          });
-        }) 
-        .catch((error) => {
-          console.log("Error getting documents: ", error);
-        });*/
+                      </tr>
+        
+                 
+                 
+                            `;
+            });
+          }) 
+          .catch((error) => {
+            console.log("Error getting documents: ", error);
+          });*/
     } else {
-      console.log("loguese por favor");
-  
-      document.getElementById("entrar").style.display = "block";
-      document.getElementById("logout").style.display = "none";
-      Swal.fire("Debe Loguearse", "", "error");
+        console.log("loguese por favor");
+
+        document.getElementById("entrar").style.display = "block";
+        document.getElementById("logout").style.display = "none";
+        Swal.fire("Debe Loguearse", "", "error");
     }
-  });
-  
+});
+
+limpiar = function () {
+    document.getElementById('codigo').value="";
+    document.getElementById('version').value="";
+    document.getElementById('fechaVer').value="";
+    document.getElementById('caso').value="";
+    document.getElementById('vacante').value="";
+    document.getElementById('cargo').value="";
+    document.getElementById('descripcion').value="";
+    document.getElementById('horario').value="";
+    document.getElementById('finicio').value="";
+    document.getElementById('hombre').value="";
+    document.getElementById('mujer').value="";
+    document.getElementById('indiferente').value="";
+    document.getElementById('aseo').value="";
+    document.getElementById('residuos').value="";
+    document.getElementById('piscinero').value="";
+    document.getElementById('quimicos').value="";
+    document.getElementById('guadana').value="";
+    document.getElementById('hidro').value="";
+    document.getElementById('locativo').value="";
+    document.getElementById('alturas').value="";
+    document.getElementById('electricidad').value="";
+    document.getElementById('mantePis').value="";
+     document.getElementById('salvavida').value="";
+    document.getElementById('reemplazo').value="";
+    document.getElementById('centrocostos').value="";
+    document.getElementById('vobo').value="";
+    document.getElementById('area').value="";
+    
+  };
+
+regis = function () {
+    let codigo =document.getElementById('codigo').value;
+    let version =document.getElementById('version').value;
+    let fechaVer =document.getElementById('fechaVer').value;
+    let caso =document.getElementById('caso').value;
+    let vacante =document.getElementById('vacante').value;
+    let cargo =document.getElementById('cargo').value;
+    let descripcion =document.getElementById('descripcion').value;
+    let horario =document.getElementById('horario').value;
+    let finicio =document.getElementById('finicio').value;
+    let hombre =document.getElementById('hombre').value;
+    let mujer =document.getElementById('mujer').value;
+    let indiferente =document.getElementById('indiferente').value;
+    let aseo =document.getElementById('aseo').value;
+    let  residuos =document.getElementById('residuos').value;
+    let piscinero =document.getElementById('piscinero').value;
+    let quimicos =document.getElementById('quimicos').value;
+    let guadana =document.getElementById('guadana').value;
+    let hidro =document.getElementById('hidro').value;
+    let locativo =document.getElementById('locativo').value;
+    let alturas =document.getElementById('alturas').value;
+    let electricidad =document.getElementById('electricidad').value;
+    let mantePis =document.getElementById('mantePis').value;
+    let salvavida =document.getElementById('salvavida').value;
+    let reemplazo =document.getElementById('reemplazo').value;
+    let centrocostos =document.getElementById('centrocostos').value;
+    let vobo =document.getElementById('vobo').value;
+    let area =document.getElementById('area').value;
+    
+    db.collection("Requisiones")
+    .add({
+      Codigo: codigo,
+      Version: version,
+      Numero: Number(caso),
+      FechaVer: fechaVer,
+      Vacante: vacante,
+      Cargo: cargo,
+      Descripcion: descripcion,
+      Horario: horario,
+      Finicio: finicio,
+      Hombre: hombre,
+      Mujer: mujer,
+      Indiferente: indiferente,
+      Aseo: aseo,
+      Residuos: residuos,
+      Piscinero: piscinero,
+      Quimicos: quimicos,
+      Guadana:guadana,
+      Hidro:hidro,
+      Locativo:locativo,
+      Alturas:alturas,
+      Electricidad:electricidad,
+      MantePis:mantePis,
+      Salvavida:salvavida,
+      Reemplazo:reemplazo,
+      Centrocostos:centrocostos,
+      Vobo:vobo,
+      Area:area,
+
+
+    })
+    .then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+      Swal.fire(
+        "Registro Exitoso!!!",
+        "Ha completado el registro del formato..",
+        "success"
+      );
+      limpiar();
+    })
+    .catch((error) => {
+      console.error("Error adding document: ", error);
+      alert("No se pudo completar el registro");
+    });
+}
+
+
+function Registrar() {
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            if (
+                /*document.getElementById("usuarioIni").value !=
+                  "practicante.desarrollo@samaracosmetics.com" &&
+                document.getElementById("usuarioIni").value !=
+                  "auxiliar.calidad@samaracosmetics.com" &&*/
+                document.getElementById("usuarioIni").value !=
+                "prueba@mail.com" &&
+                document.getElementById("usuarioIni").value != "eduardo@mail.com"
+            ) {
+                Swal.fire("No tienes permiso para esta acción", "", "error");
+            } else {
+                if (confirm("Seguro que desea continuar con el registro?")) {
+                    if (document.getElementById("vacante").value != "" && document.getElementById("cargo").value != "" && document.getElementById("horario").value != "" && document.getElementById("finicio").value != "" && document.getElementById("centrocostos").value != "") {
+                        regis();
+                    } else {
+                        Swal.fire("Complete los campos", "", "error");
+                    }
+                } else {
+                }
+            }
+        } else {
+            console.log("loguese por favor");
+            Swal.fire("Debe Loguearse", "", "error");
+        }
+    });
+}
