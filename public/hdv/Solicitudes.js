@@ -166,9 +166,9 @@ regis = function () {
     let descripcion =document.getElementById('descripcion').value;
     let horario =document.getElementById('horario').value;
     let finicio =document.getElementById('finicio').value;
-    let hombre =document.getElementById('hombre').value;
-    let mujer =document.getElementById('mujer').value;
-    let indiferente =document.getElementById('indiferente').value;
+    let hombre =false;
+    let mujer =false;
+    let indiferente =false;
     let aseo =document.getElementById('aseo').value;
     let  residuos =document.getElementById('residuos').value;
     let piscinero =document.getElementById('piscinero').value;
@@ -184,6 +184,17 @@ regis = function () {
     let centrocostos =document.getElementById('centrocostos').value;
     let vobo =document.getElementById('vobo').value;
     let area =document.getElementById('area').value;
+
+    if (document.getElementById('hombre').checked) {
+        hombre = true;
+    }
+    if (document.getElementById('mujer').checked) { 
+
+        mujer = true;
+    }
+    if (document.getElementById('indiferente').checked) {
+        indiferente = true;
+    }
     
     db.collection("Requisiones")
     .add({
