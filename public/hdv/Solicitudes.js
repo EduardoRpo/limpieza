@@ -169,22 +169,24 @@ regis = function () {
     let hombre =false;
     let mujer =false;
     let indiferente =false;
-    let aseo =document.getElementById('aseo').value;
-    let  residuos =document.getElementById('residuos').value;
-    let piscinero =document.getElementById('piscinero').value;
-    let quimicos =document.getElementById('quimicos').value;
-    let guadana =document.getElementById('guadana').value;
-    let hidro =document.getElementById('hidro').value;
-    let locativo =document.getElementById('locativo').value;
-    let alturas =document.getElementById('alturas').value;
-    let electricidad =document.getElementById('electricidad').value;
-    let mantePis =document.getElementById('mantePis').value;
-    let salvavida =document.getElementById('salvavida').value;
+    let aseo=false;
+    let residuos=false;
+    let piscinero=false;
+    let quimicos=false;
+    let guadana=false;
+    let hidro=false;
+    let locativo=false;
+    let alturas=false;
+    let electricidad=false;
+    let mantePis=false;
+    //let salvavida =document.getElementById('salvavida').checked;
+    let salvavida=false;
     let reemplazo =document.getElementById('reemplazo').value;
     let centrocostos =document.getElementById('centrocostos').value;
     let vobo =document.getElementById('vobo').value;
     let area =document.getElementById('area').value;
 
+    // Radio buttons configurations
     if (document.getElementById('hombre').checked) {
         hombre = true;
     }
@@ -195,6 +197,50 @@ regis = function () {
     if (document.getElementById('indiferente').checked) {
         indiferente = true;
     }
+
+    // check box configurations
+    if (document.getElementById('aseo').checked) {
+        aseo = true;
+    }
+    if (document.getElementById('residuos').checked) { 
+
+        residuos = true;
+    }
+    if (document.getElementById('piscinero').checked) {
+        piscinero = true;
+    }
+
+    if (document.getElementById('quimicos').checked) {
+        quimicos = true;
+    }
+    if (document.getElementById('guadana').checked) { 
+
+        guadana = true;
+    }
+    if (document.getElementById('hidro').checked) {
+        hidro = true;
+    }
+    
+
+    if (document.getElementById('locativo').checked) {
+        locativo = true;
+    }
+    if (document.getElementById('alturas').checked) { 
+
+        alturas = true;
+    }
+    if (document.getElementById('electricidad').checked) {
+        electricidad = true;
+    }
+
+    if (document.getElementById('mantePis').checked) {
+        mantePis = true;
+    }
+    if (document.getElementById('salvavida').checked) { 
+
+        salvavida = true;
+    }
+    
     
     db.collection("Requisiones")
     .add({
