@@ -1090,7 +1090,7 @@ function testSplit(){
 
 function Registrar(){
 
-    if(document.getElementById('nombre').value!='' && document.getElementById('centroco').value!='' && document.getElementById('fecha').value!='' && document.getElementById('zona1').value!='' && document.getElementById('estado1').value!='' && document.getElementById('concep1').value!='' && document.getElementById('estad1').value!=''){ 
+    if(document.getElementById('nombre').value!='' && document.getElementById('centroco').value!='' && document.getElementById('fecha').value!='' && document.getElementById('zona1').value!='' && document.getElementById('estado1').value!='' /* && document.getElementById('concep1').value!='' && document.getElementById('estad1').value!=''*/){ 
 
         if (confirm("Seguro que desea continuar con el registro?")) {
 
