@@ -1094,6 +1094,21 @@ function Registrar(){
 
         if (confirm("Seguro que desea continuar con el registro?")) {
 
+            // inicializo variable checkbox
+
+            let cb1=false;
+            let cb2=false;
+            let cb3=false;
+            let cb4=false;
+            let cb5=false;
+            let cb6=false;
+            let cb7=false;
+            let cb8=false;
+            let cb9=false;
+            let cb10=false;
+            let cb11=false;
+
+
             var documento=document.getElementById('documento').value;
             var nombre=document.getElementById('nombre').value;
             var nit= document.getElementById('nit').value;
@@ -1164,6 +1179,40 @@ function Registrar(){
 
             var divisiones = String(centrocos.split(" ", 1)) ;
 
+            if (document.getElementById('cb1').checked) {
+                cb1 = true;
+            }
+            if (document.getElementById('cb2').checked) {
+                cb2 = true;
+            }
+            if (document.getElementById('cb3').checked) {
+                cb3 = true;
+            }
+            if (document.getElementById('cb4').checked) {
+                cb4 = true;
+            }
+            if (document.getElementById('cb5').checked) {
+                cb5 = true;
+            }
+            if (document.getElementById('cb6').checked) {
+                cb6 = true;
+            }
+            if (document.getElementById('cb7').checked) {
+                cb7 = true;
+            }
+            if (document.getElementById('cb8').checked) {
+                cb8 = true;
+            }
+            if (document.getElementById('cb9').checked) {
+                cb9 = true;
+            }
+            if (document.getElementById('cb10').checked) {
+                cb10 = true;
+            }
+            if (document.getElementById('cb11').checked) {
+                cb11 = true;
+            }
+
              //--------------------firma--------------------
              ficheroF = document.getElementById('ficheroF');
 
@@ -1172,6 +1221,17 @@ function Registrar(){
              //---------------------------------------------
         
             db.collection("RegistroInforme").add({
+                Cb1:cb1,
+                Cb2:cb2,
+                Cb3:cb3,
+                Cb4:cb4,
+                Cb5:cb5,
+                Cb6:cb6,
+                Cb7:cb7,
+                Cb8:cb8,
+                Cb9:cb9,
+                Cb10:cb10,
+                Cb11:cb11,
                 Registra:ingreso,
                 Documento: documento,
                 Nombre: nombre,
