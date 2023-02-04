@@ -17,6 +17,47 @@ var fichero;
 var storageRef;
 storageRef = firebase.storage().ref();
 
+//----------------------actualizar consecutivo-----------
+auth.onAuthStateChanged((user) => {
+    //tabl = document.getElementById("tabla");
+    let autorizadoPor = user.email;
+    //console.log("el usuario es" + autorizadoPor);
+    //document.getElementById("usuario").value = autorizadoPor;
+     caso=0;
+    if (user) {
+      db.collection("RegistroInforme")
+        .where("Numero", ">", 0)
+        .orderBy("Numero", "asc")
+        .onSnapshot((querySnapshot) => {
+          querySnapshot.forEach(function (doc) {
+            // doc.data() is never undefined for query doc snapshots
+            //console.log(doc.id, " => ", doc.data());
+             caso = Number(`${doc.data().Numero}`);
+            //var casoNuevo = 0;
+            // var casoNuevo = Number(caso + 1);
+            //---------------------------------------------------------------------------------.collection("Facturas").where("Caso", ">", 0).orderBy("Caso", "asc")
+            //var casoNuevo = 0;
+            //var casoNuevo = Number(caso + 1);
+            caso++;
+            let y = new Date().getFullYear();
+            //console.log(caso);
+            //alert(casoNuevo)
+            // document.getElementById('caso').value = casoNuevo;
+            document.getElementById("caso").value = y+''+caso;
+          });
+        });
+  
+      
+    } else {
+      console.log("loguese por favor");
+  
+      document.getElementById("entrar").style.display = "block";
+      document.getElementById("logout").style.display = "none";
+      Swal.fire("Debe Loguearse", "", "error");
+    }
+  });
+  
+
 //-------------------------------ubicacion-------------
 NameCity = '';
 latitud = '';
@@ -1090,7 +1131,7 @@ function testSplit(){
 
 function Registrar(){
 
-    if(document.getElementById('nombre').value!='' && document.getElementById('centroco').value!='' && document.getElementById('fecha').value!='' && document.getElementById('zona1').value!='' && document.getElementById('estado1').value!='' /* && document.getElementById('concep1').value!='' && document.getElementById('estad1').value!=''*/){ 
+    if(document.getElementById('nombre').value!='' && document.getElementById('centroco').value!='' && document.getElementById('fecha').value!='' /*&& document.getElementById('zona1').value!='' && document.getElementById('estado1').value!=''  && document.getElementById('concep1').value!='' && document.getElementById('estad1').value!=''*/){ 
 
         if (confirm("Seguro que desea continuar con el registro?")) {
 
@@ -1219,8 +1260,12 @@ function Registrar(){
              //fichero.addEventListener('onclick', subirImagenAfirebase, false);
              subirImagenAfirebaseFirma();
              //---------------------------------------------
-        
+            numero=caso;
+            let registro = document.getElementById('caso').value;
+
             db.collection("RegistroInforme").add({
+                Numero:Number(numero),
+                Id:registro,
                 Cb1:cb1,
                 Cb2:cb2,
                 Cb3:cb3,
@@ -1325,6 +1370,7 @@ function Registrar(){
 
    
 }
+
 
 function Documento(val) {
 
