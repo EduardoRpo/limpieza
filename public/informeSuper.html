@@ -9,6 +9,11 @@
 
     <title>L&SI</title>
 
+     <!--datables CSS básico-->
+     <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" />
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
+
     <!--sweet alert-->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -33,6 +38,9 @@
 
     <!--Bootstrap Stylesheet [ REQUIRED ]-->
     <link href="css\bootstrap.min.css" rel="stylesheet">
+
+    
+   
 
 
 
@@ -2066,10 +2074,14 @@
                                                 <!--===================================================-->
                                                 <!--End Bordered Accordion-->
 
+
+
                                             </div>
                                         </div>
 
                                     </div>
+
+
 
                                 </div>
 
@@ -2080,10 +2092,12 @@
 
                         </div>
 
+
+
                         <div class="col-sm-4">
                             <div class="panel">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">Informe de Supervión</h3>
+                                    <h3 class="panel-title">Informe de Supervisión</h3>
                                 </div>
 
                                 <!--Block Styled Form -->
@@ -3269,7 +3283,7 @@
                                             onclick="Calcular()">
                                         <input class="btn btn-success" type="button" value="Registrar"
                                             onclick="Registrar()">
-                                           
+
                                     </div>
 
                                     <label for="" style="color: rgb(247, 14, 14);">Calificación</label><input
@@ -3293,9 +3307,37 @@
                                 <!--===================================================-->
                                 <!--End Block Styled Form -->
 
+
                             </div>
+
+
                         </div>
+                        <input type="button" value="test" onclick="Mostrar()" style="display: none;">
+                        <!--inicio tabla-->
+                        <div class="table-responsive mt-5 col-sm-12"
+                            style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); ; background: #fff; border-radius: 5px; margin-bottom: 2%;">
+                            <table id="example" class="table table-striped" style="width:100%; max-width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Area</th>
+                                        <th>Registra</th>
+                                        
+
+                                    </tr>
+                                </thead>
+                                <tbody id="tabla">
+
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                        <!--fin tabla-->
+
                     </div>
+
 
 
 
@@ -3992,8 +4034,30 @@
     <!--nuevos-->
 
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>-->
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+    
+        <script src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap5.min.js"></script>
+    
+        <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    
+    
+    
+    
+    
+        <script
+            src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.templates.min.js"></script>
+    
 
     <script src="../plugins/sweetalert2/sweetalert2.all.min.js"></script>
 

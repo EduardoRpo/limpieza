@@ -1129,6 +1129,9 @@ function testSplit(){
 
 }
 
+
+
+
 function Registrar(){
 
     if(document.getElementById('nombre').value!='' && document.getElementById('centroco').value!='' && document.getElementById('fecha').value!='' /*&& document.getElementById('zona1').value!='' && document.getElementById('estado1').value!=''  && document.getElementById('concep1').value!='' && document.getElementById('estad1').value!=''*/){ 
@@ -1372,12 +1375,14 @@ function Registrar(){
 }
 
 
+
+
 function Documento(val) {
 
     val2=String(val);
 
     //tabl = document.getElementById("resul11");
-
+    showData();
     
     db.collection("Empleados").where("Cedula", "==", val2)
         .get()
@@ -1687,3 +1692,175 @@ descargar = function convertCanvasToImgElement() {
     download(imgElement);
 
 }
+
+
+showData=function Mostrar(){
+
+    var tabl23 = document.getElementById("tabla");
+    
+  
+    dataSet = new Array();
+    var i = 1;
+
+    let centroco=document.getElementById('centroco').value;
+    //901218738 - CONJ. RES. TERRITORIO AURORA
+    db.collection("RegistroInforme").where("CentroCostos","==",'901218738 - CONJ. RES. TERRITORIO AURORA').limit(50).get().then(function (querySnapshot) {
+        tabl23.innerHTML = "";
+        querySnapshot.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+          /*Swal.fire(
+            'Consulta exitosa!!!',
+            '',
+            'success'
+          )*/
+          let Fecha = `${doc.data().Fecha}`;
+          let Nombre = `${doc.data().Nombre}`; 
+          let Cb1 = `${doc.data().Cb1}`;
+          let Cb2 = `${doc.data().Cb2}`;
+          let Cb3 = `${doc.data().Cb3}`;
+          let Cb4 = `${doc.data().Cb4}`;
+          let Cb5 = `${doc.data().Cb5}`;
+          let Cb6 = `${doc.data().Cb6}`;
+          let Cb7 = `${doc.data().Cb7}`;
+          let Cb8 = `${doc.data().Cb8}`;
+          let Cb9 = `${doc.data().Cb9}`;
+          let Cb10 = `${doc.data().Cb10}`;
+          let Cb11 = `${doc.data().Cb11}`;  
+
+          let Zona1 = `${doc.data().Zona1}`;
+          let Zona2 = `${doc.data().Zona2}`;
+          let Zona3 = `${doc.data().Zona3}`;
+          let Zona4 = `${doc.data().Zona4}`;
+          let Zona5 = `${doc.data().Zona5}`;
+          let Zona6 = `${doc.data().Zona6}`;
+          let Zona7 = `${doc.data().Zona7}`;
+          let Zona8 = `${doc.data().Zona8}`;
+          let Zona9 = `${doc.data().Zona9}`;
+          let Zona10 = `${doc.data().Zona10}`;
+          let Zona11 = `${doc.data().Zona11}`;  
+
+          let Registra = `${doc.data().Registra}`;  
+
+          if(Cb1){
+            showZone1=Zona1;
+          }
+          if(Cb2){
+            showZone2=Zona2;
+          }
+          if(Cb3){
+            showZone3=Zona3;
+          }
+          if(Cb4){
+            showZone4=Zona4;
+          }
+          if(Cb5){
+            showZone5=Zona5;
+          }
+          if(Cb6){
+            showZone6=Zona6;
+          }
+          if(Cb7){
+            showZone7=Zona7;
+          }
+          if(Cb8){
+            showZone8=Zona8;
+          }
+          if(Cb9){
+            showZone9=Zona9;
+          }
+          if(Cb10){
+            showZone10=Zona10;
+          }
+          if(Cb11){
+            showZone11=Zona11;
+          }
+
+          let zonasShow = showZone1+','+showZone2+','+showZone3+','+showZone4+','+showZone5+','+showZone6+','+showZone7+','+showZone8+','+showZone9+','+showZone10+','+showZone11;
+          
+          
+  
+        
+          dataSet.push([Fecha,zonasShow,Registra]);
+          //console.log('usuario:' + usuario + '-' + 'modificado:' + modificadoX + '-' + 'fecha' + Fecha);
+  
+          i = i + 1;
+  
+  
+          $(document).ready(function () {
+            var tablaSuma = $('#example').DataTable({
+  
+              dom: "Bfrtip",
+              pageLength: 50,
+              resposive: true,
+  
+  
+  
+  
+  
+  
+              data: dataSet,
+              "bDestroy": true,
+              columnDefs: [{
+                "defaultContent": "",
+                "targets": "_all"
+              }],
+              columns: [
+  
+                { title: "Fecha" },
+                { title: "Area" },
+                { title: "Registra" },
+               
+                
+                
+              ],
+  
+  
+              //para cambiar el lenguaje a español
+              "language": {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                  "sFirst": "Primero",
+                  "sLast": "Último",
+                  "sNext": "Siguiente",
+                  "sPrevious": "Anterior"
+                },
+  
+                "sProcessing": "Procesando...",
+  
+              }
+  
+            });
+  
+  
+          });
+          //info2daParte();
+  
+  
+  
+  
+  
+  
+        });
+
+        /*Swal.fire(
+          'Consulta exitosa!!',
+          'Se puede demorar unos segundos...',
+          'success'
+        ) */
+  
+      })
+      .catch((error) => {
+        console.log("Error getting documents: ", error);
+      });
+  
+    //-------------------------------------
+  
+  
+
+  }
