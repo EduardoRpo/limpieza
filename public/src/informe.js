@@ -1741,6 +1741,7 @@ showData=function Mostrar(){
           let Zona11 = `${doc.data().Zona11}`;  
 
           let Registra = `${doc.data().Registra}`;  
+          let id = `${doc.data().Id}`;  
 
           if(Cb1){
             showZone1=Zona1;
@@ -1781,7 +1782,7 @@ showData=function Mostrar(){
           
   
         
-          dataSet.push([Fecha,zonasShow,Registra]);
+          dataSet.push([id,Fecha,zonasShow,Registra]);
           //console.log('usuario:' + usuario + '-' + 'modificado:' + modificadoX + '-' + 'fecha' + Fecha);
   
           i = i + 1;
@@ -1806,7 +1807,7 @@ showData=function Mostrar(){
                 "targets": "_all"
               }],
               columns: [
-  
+                { title: "Id" },
                 { title: "Fecha" },
                 { title: "Area" },
                 { title: "Registra" },
