@@ -1741,39 +1741,51 @@ showData=function Mostrar(){
           let Zona11 = `${doc.data().Zona11}`;  
 
           let Registra = `${doc.data().Registra}`;  
-          let id = `${doc.data().Id}`;  
+          let id = `${doc.data().Id}`;
+          let showZone1='';  
+          let showZone2='';  
+          let showZone3='';  
+          let showZone4='';  
+          let showZone5='';  
+          let showZone6='';  
+          let showZone7='';  
+          let showZone8='';  
+          let showZone9='';  
+          let showZone10='';  
+          let showZone11='';  
 
-          if(Cb1){
+
+          if(Cb1==='true'){
             showZone1=Zona1;
           }
-          if(Cb2){
+          if(Cb2==='true'){
             showZone2=Zona2;
           }
-          if(Cb3){
+          if(Cb3==='true'){
             showZone3=Zona3;
           }
-          if(Cb4){
+          if(Cb4==='true'){
             showZone4=Zona4;
           }
-          if(Cb5){
+          if(Cb5==='true'){
             showZone5=Zona5;
           }
-          if(Cb6){
+          if(Cb6==='true'){
             showZone6=Zona6;
           }
-          if(Cb7){
+          if(Cb7==='true'){
             showZone7=Zona7;
           }
-          if(Cb8){
+          if(Cb8==='true'){
             showZone8=Zona8;
           }
-          if(Cb9){
+          if(Cb9==='true'){
             showZone9=Zona9;
           }
-          if(Cb10){
+          if(Cb10==='true'){
             showZone10=Zona10;
           }
-          if(Cb11){
+          if(Cb11==='true'){
             showZone11=Zona11;
           }
 
@@ -1863,5 +1875,185 @@ showData=function Mostrar(){
     //-------------------------------------
   
   
+
+  }
+
+
+  function Consultar(){
+    
+    auth.onAuthStateChanged(user => {
+        if (user) {
+
+
+            let caso1 = document.getElementById('queryId').value;
+
+            db.collection("RegistroInforme").where("Id", "==", caso1)
+                .get()
+                .then(function (querySnapshot) {
+                    // let total_count = 0;
+                    querySnapshot.forEach(function (doc) {
+
+                        console.log(doc.id, " => ", doc.data());
+
+
+                        //total_count += doc.data().count;
+
+                        //console.log('conteo' + total_count);
+
+                        var CentroCostos = `${doc.data().CentroCostos}`;
+                        var Documento = `${doc.data().Documento}`;
+                        var Nombre = `${doc.data().Nombre}`;
+                        var Fecha = `${doc.data().Fecha}`;
+
+                        var Id = `${doc.data().Id}`;
+
+                        
+                        var Zona1 = `${doc.data().Zona1}`;
+                        var Zona2 = `${doc.data().Zona2}`;
+                        var Zona3 = `${doc.data().Zona3}`;
+                        var Zona4 = `${doc.data().Zona4}`;
+                        var Zona5 = `${doc.data().Zona5}`;
+                        var Zona6 = `${doc.data().Zona6}`;
+                        var Zona7 = `${doc.data().Zona7}`;
+                        var Zona8 = `${doc.data().Zona8}`;
+                        var Zona9 = `${doc.data().Zona9}`;
+                        var Zona10 = `${doc.data().Zona10}`;
+                        var Zona11 = `${doc.data().Zona11}`;
+
+                        var Cb1 = `${doc.data().Cb1}`;
+                        var Cb2 = `${doc.data().Cb2}`;
+                        var Cb3 = `${doc.data().Cb3}`;
+                        var Cb4 = `${doc.data().Cb4}`;
+                        var Cb5 = `${doc.data().Cb5}`;
+                        var Cb6 = `${doc.data().Cb6}`;
+                        var Cb7 = `${doc.data().Cb7}`;
+                        var Cb8 = `${doc.data().Cb8}`;
+                        var Cb9 = `${doc.data().Cb9}`;
+                        var Cb10 = `${doc.data().Cb10}`;
+                        var Cb11 = `${doc.data().Cb11}`;
+
+                        let Cb1Response = JSON.parse(Cb1);
+                        let Cb2Response = JSON.parse(Cb2);
+                        let Cb3Response = JSON.parse(Cb3);
+                        let Cb4Response = JSON.parse(Cb4);
+                        let Cb5Response = JSON.parse(Cb5);
+                        let Cb6Response = JSON.parse(Cb6);
+                        let Cb7Response = JSON.parse(Cb7);
+                        let Cb8Response = JSON.parse(Cb8);
+                        let Cb9Response = JSON.parse(Cb9);
+                        let Cb10Response = JSON.parse(Cb10);
+                        let Cb11Response = JSON.parse(Cb11);
+
+                        document.getElementById('cb1').checked = Cb1Response;
+                        document.getElementById('cb2').checked = Cb2Response;
+                        document.getElementById('cb3').checked = Cb3Response;
+                        document.getElementById('cb4').checked = Cb4Response;
+                        document.getElementById('cb5').checked = Cb5Response;
+                        document.getElementById('cb6').checked = Cb6Response;
+                        document.getElementById('cb7').checked = Cb7Response;
+                        document.getElementById('cb8').checked = Cb8Response;
+                        document.getElementById('cb9').checked = Cb9Response;
+                        document.getElementById('cb10').checked = Cb10Response;
+                        document.getElementById('cb11').checked = Cb11Response;
+                        
+                      
+                        document.getElementById('documento').value = Documento;
+                        document.getElementById('nombre').value = Nombre;
+                        document.getElementById('centroco').value = CentroCostos;
+                        document.getElementById('fecha').value = Fecha;
+
+                        document.getElementById('zona1').value = Zona1;
+                        document.getElementById('zona2').value = Zona2;
+                        document.getElementById('zona3').value = Zona3;
+                        document.getElementById('zona4').value = Zona4;
+                        document.getElementById('zona5').value = Zona5;
+                        document.getElementById('zona6').value = Zona6;
+                        document.getElementById('zona7').value = Zona7;
+                        document.getElementById('zona8').value = Zona8;
+                        document.getElementById('zona9').value = Zona9;
+                        document.getElementById('zona10').value = Zona10;
+                        document.getElementById('zona11').value = Zona11;
+                        //document.getElementById('cb1').value = Cb1;
+
+                        document.getElementById('caso').value = Id;
+
+                        //document.getElementById('idRegistro').style.display = 'none';
+
+
+                        //--------------------actualizar----------------------
+                        /*actuali = function () {
+
+
+                            var usuarioIni = document.getElementById('usuarioIni').value;
+
+                            //estado2 = 0;
+                            var estado1 = 'Confirmado';
+
+                            //estado2 = Number(Estado + 1);
+
+                            modificadoPor = user.email;
+
+                            var observaciones = document.getElementById('observaciones1').value;
+
+
+
+                            var washingtonRef = db.collection("Facturas").doc(doc.id);
+                            return washingtonRef.update({
+
+                                UsuarioModi: usuarioIni,
+
+                                Estado: estado1,
+                                Observaciones: observaciones,
+
+
+                            })
+                                .then(function () {
+
+
+                                    console.log("Document successfully updated!");
+                                    Swal.fire(
+                                        'Registro Actualizado!!!',
+                                        '',
+                                        'success'
+                                    )
+                                    setInterval("location.reload()", 3000);
+                                })
+                                .catch(function (error) {
+                                    // The document probably doesn't exist.
+                                    console.error("Error updating document: ", error);
+                                });
+
+
+                        } */
+
+                        //--------------------fin actualizar--------------------
+
+
+
+
+                    });
+                })
+                .catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
+
+
+
+        } else {
+
+            console.log('loguese por favor');
+            Swal.fire(
+                'Debe Loguearse',
+                '',
+                'error'
+            )
+
+        }
+
+
+
+    })
+
+    //-----------------------------------------
 
   }
