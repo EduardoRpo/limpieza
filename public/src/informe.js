@@ -23,155 +23,155 @@ auth.onAuthStateChanged((user) => {
     let autorizadoPor = user.email;
     //console.log("el usuario es" + autorizadoPor);
     //document.getElementById("usuario").value = autorizadoPor;
-     caso=0;
+    caso = 0;
     if (user) {
-      db.collection("RegistroInforme")
-        .where("Numero", ">", 0)
-        .orderBy("Numero", "asc")
-        .onSnapshot((querySnapshot) => {
-          querySnapshot.forEach(function (doc) {
-            // doc.data() is never undefined for query doc snapshots
-            //console.log(doc.id, " => ", doc.data());
-             caso = Number(`${doc.data().Numero}`);
-            //var casoNuevo = 0;
-            // var casoNuevo = Number(caso + 1);
-            //---------------------------------------------------------------------------------.collection("Facturas").where("Caso", ">", 0).orderBy("Caso", "asc")
-            //var casoNuevo = 0;
-            //var casoNuevo = Number(caso + 1);
-            caso++;
-            let y = new Date().getFullYear();
-            //console.log(caso);
-            //alert(casoNuevo)
-            // document.getElementById('caso').value = casoNuevo;
-            document.getElementById("caso").value = y+''+caso;
-          });
-        });
-  
-      
+        db.collection("RegistroInforme")
+            .where("Numero", ">", 0)
+            .orderBy("Numero", "asc")
+            .onSnapshot((querySnapshot) => {
+                querySnapshot.forEach(function (doc) {
+                    // doc.data() is never undefined for query doc snapshots
+                    //console.log(doc.id, " => ", doc.data());
+                    caso = Number(`${doc.data().Numero}`);
+                    //var casoNuevo = 0;
+                    // var casoNuevo = Number(caso + 1);
+                    //---------------------------------------------------------------------------------.collection("Facturas").where("Caso", ">", 0).orderBy("Caso", "asc")
+                    //var casoNuevo = 0;
+                    //var casoNuevo = Number(caso + 1);
+                    caso++;
+                    let y = new Date().getFullYear();
+                    //console.log(caso);
+                    //alert(casoNuevo)
+                    // document.getElementById('caso').value = casoNuevo;
+                    document.getElementById("caso").value = y + '' + caso;
+                });
+            });
+
+
     } else {
-      console.log("loguese por favor");
-  
-      document.getElementById("entrar").style.display = "block";
-      document.getElementById("logout").style.display = "none";
-      Swal.fire("Debe Loguearse", "", "error");
+        console.log("loguese por favor");
+
+        document.getElementById("entrar").style.display = "block";
+        document.getElementById("logout").style.display = "none";
+        Swal.fire("Debe Loguearse", "", "error");
     }
-  });
-  
+});
+
 
 //-------------------------------ubicacion-------------
 NameCity = '';
 latitud = '';
 longitud = '';
 window.addEventListener('load', () => {
-let lon
-let lat
+    let lon
+    let lat
 
-let temperaturaValor = document.getElementById('temperatura-valor')
-let temperaturaDescripcion = document.getElementById('temperatura-descripcion')
+    let temperaturaValor = document.getElementById('temperatura-valor')
+    let temperaturaDescripcion = document.getElementById('temperatura-descripcion')
 
-let ubicacion = document.getElementById('ubicacion')
-let iconoAnimado = document.getElementById('icono-animado')
+    let ubicacion = document.getElementById('ubicacion')
+    let iconoAnimado = document.getElementById('icono-animado')
 
-let vientoVelocidad = document.getElementById('viento-velocidad')
+    let vientoVelocidad = document.getElementById('viento-velocidad')
 
-//ciudad='Cali';
-
-
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(posicion => {
-        console.log(posicion.coords.latitude)
-        lon = posicion.coords.longitude
-        lat = posicion.coords.latitude
-        //ubicación actual    
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7c2ea75f3f04318c65c62f32ccd5213c`
-
-        //ubicación por ciudad
-        /*const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&lang=es&units=metric&appid=7c2ea75f3f04318c65c62f32ccd5213c`*/
-
-        //console.log(url)
+    //ciudad='Cali';
 
 
-        fetch(url)
-            .then(response => { return response.json() })
-            .then(data => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(posicion => {
+            console.log(posicion.coords.latitude)
+            lon = posicion.coords.longitude
+            lat = posicion.coords.latitude
+            //ubicación actual    
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7c2ea75f3f04318c65c62f32ccd5213c`
 
-                console.log(data);
-                NameCity = data.name;
-                console.log('Latitud' + data.coord.lat);
-                console.log('longitud' + data.coord.lon);
-                latitud = data.coord.lat;
-                longitud = data.coord.lon;
+            //ubicación por ciudad
+            /*const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&lang=es&units=metric&appid=7c2ea75f3f04318c65c62f32ccd5213c`*/
+
+            //console.log(url)
+
+
+            fetch(url)
+                .then(response => { return response.json() })
+                .then(data => {
+
+                    console.log(data);
+                    NameCity = data.name;
+                    console.log('Latitud' + data.coord.lat);
+                    console.log('longitud' + data.coord.lon);
+                    latitud = data.coord.lat;
+                    longitud = data.coord.lon;
 
 
 
-                let temp = Math.round(data.main.temp)
-                //console.log(temp)
-                temperaturaValor.textContent = `${temp} ° C`
+                    let temp = Math.round(data.main.temp)
+                    //console.log(temp)
+                    temperaturaValor.textContent = `${temp} ° C`
 
-                //console.log(data.weather[0].description)
-                let desc = data.weather[0].description
-                temperaturaDescripcion.textContent = desc.toUpperCase()
-                ubicacion.textContent = data.name
+                    //console.log(data.weather[0].description)
+                    let desc = data.weather[0].description
+                    temperaturaDescripcion.textContent = desc.toUpperCase()
+                    ubicacion.textContent = data.name
 
-                vientoVelocidad.textContent = `${data.wind.speed} m/s`
+                    vientoVelocidad.textContent = `${data.wind.speed} m/s`
 
-                //para iconos estáticos
-                //const urlIcon = `http://openweathermap.org/img/wn/${iconCode}.png`                     
-                //icono.src = urlIcon
-                //console.log(data.weather[0].icon)
+                    //para iconos estáticos
+                    //const urlIcon = `http://openweathermap.org/img/wn/${iconCode}.png`                     
+                    //icono.src = urlIcon
+                    //console.log(data.weather[0].icon)
 
-                //para iconos dinámicos
-                console.log(data.weather[0].main)
-                switch (data.weather[0].main) {
-                    case 'Thunderstorm':
-                        iconoAnimado.src = 'animated/thunder.svg'
-                        console.log('TORMENTA');
-                        break;
-                    case 'Drizzle':
-                        iconoAnimado.src = 'animated/rainy-2.svg'
-                        console.log('LLOVIZNA');
-                        break;
-                    case 'Rain':
-                        iconoAnimado.src = 'animated/rainy-7.svg'
-                        console.log('LLUVIA');
-                        break;
-                    case 'Snow':
-                        iconoAnimado.src = 'animated/snowy-6.svg'
-                        console.log('NIEVE');
-                        break;
-                    case 'Clear':
-                        iconoAnimado.src = 'animated/day.svg'
-                        console.log('LIMPIO');
-                        break;
-                    case 'Atmosphere':
-                        iconoAnimado.src = 'animated/weather.svg'
-                        console.log('ATMOSFERA');
-                        break;
-                    case 'Clouds':
-                        iconoAnimado.src = 'animated/cloudy-day-1.svg'
-                        console.log('NUBES');
-                        break;
-                    default:
-                        iconoAnimado.src = 'animated/cloudy-day-1.svg'
-                        console.log('por defecto');
-                }
+                    //para iconos dinámicos
+                    console.log(data.weather[0].main)
+                    switch (data.weather[0].main) {
+                        case 'Thunderstorm':
+                            iconoAnimado.src = 'animated/thunder.svg'
+                            console.log('TORMENTA');
+                            break;
+                        case 'Drizzle':
+                            iconoAnimado.src = 'animated/rainy-2.svg'
+                            console.log('LLOVIZNA');
+                            break;
+                        case 'Rain':
+                            iconoAnimado.src = 'animated/rainy-7.svg'
+                            console.log('LLUVIA');
+                            break;
+                        case 'Snow':
+                            iconoAnimado.src = 'animated/snowy-6.svg'
+                            console.log('NIEVE');
+                            break;
+                        case 'Clear':
+                            iconoAnimado.src = 'animated/day.svg'
+                            console.log('LIMPIO');
+                            break;
+                        case 'Atmosphere':
+                            iconoAnimado.src = 'animated/weather.svg'
+                            console.log('ATMOSFERA');
+                            break;
+                        case 'Clouds':
+                            iconoAnimado.src = 'animated/cloudy-day-1.svg'
+                            console.log('NUBES');
+                            break;
+                        default:
+                            iconoAnimado.src = 'animated/cloudy-day-1.svg'
+                            console.log('por defecto');
+                    }
 
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    })
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        })
 
-}
+    }
 })
 
 
 auth.onAuthStateChanged(user => {
     if (user) {
 
-        let ingreso =user.email;
+        let ingreso = user.email;
 
-        document.getElementById('mailUser').value=ingreso;
+        document.getElementById('mailUser').value = ingreso;
 
         //-----------------------------------------
 
@@ -183,7 +183,7 @@ auth.onAuthStateChanged(user => {
             '',
             'error'
         )
-        window.location.href='index.html'
+        window.location.href = 'index.html'
 
     }
 
@@ -200,7 +200,7 @@ logout.addEventListener('click', e => {
         console.log('ha salido');
 
         //location.reload();
-        window.location.href='index.html'
+        window.location.href = 'index.html'
     })
 })
 
@@ -208,7 +208,7 @@ logout.addEventListener('click', e => {
 
 subirImagenAfirebase = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = fichero.files[0];
     var uploadTask = storageRef.child('FQ/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -235,7 +235,7 @@ subirImagenAfirebase = function () {
         },
 
         () => {
-            var downloadURL1='vacio'; 
+            var downloadURL1 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL1) => {
@@ -249,9 +249,9 @@ subirImagenAfirebase = function () {
                 db.collection("ImagenesInforme").add({
                     Url1: downloadURL1,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona1:zona
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona1: zona
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -260,7 +260,7 @@ subirImagenAfirebase = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -287,7 +287,7 @@ function subirImg() {
 //------------------------imagen 2-----------
 subirImagenAfirebase2 = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = fichero2.files[0];
     var uploadTask = storageRef.child('FQ/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -314,7 +314,7 @@ subirImagenAfirebase2 = function () {
         },
 
         () => {
-            var downloadURL2='vacio'; 
+            var downloadURL2 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL2) => {
@@ -328,9 +328,9 @@ subirImagenAfirebase2 = function () {
                 db.collection("ImagenesInforme").add({
                     Url2: downloadURL2,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona2:zona2
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona2: zona2
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -339,7 +339,7 @@ subirImagenAfirebase2 = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -366,7 +366,7 @@ function subirImg2() {
 //---------------------imagen 3------------------
 subirImagenAfirebase3 = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = fichero3.files[0];
     var uploadTask = storageRef.child('FQ/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -393,7 +393,7 @@ subirImagenAfirebase3 = function () {
         },
 
         () => {
-            var downloadURL3='vacio'; 
+            var downloadURL3 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL3) => {
@@ -407,9 +407,9 @@ subirImagenAfirebase3 = function () {
                 db.collection("ImagenesInforme").add({
                     Url3: downloadURL3,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona3:zona3
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona3: zona3
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -418,7 +418,7 @@ subirImagenAfirebase3 = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -445,7 +445,7 @@ function subirImg3() {
 //-------------------imagen 4-----------------------
 subirImagenAfirebase4 = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = fichero4.files[0];
     var uploadTask = storageRef.child('FQ/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -472,7 +472,7 @@ subirImagenAfirebase4 = function () {
         },
 
         () => {
-            var downloadURL4='vacio'; 
+            var downloadURL4 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL4) => {
@@ -486,9 +486,9 @@ subirImagenAfirebase4 = function () {
                 db.collection("ImagenesInforme").add({
                     Url4: downloadURL4,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona4:zona4
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona4: zona4
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -497,7 +497,7 @@ subirImagenAfirebase4 = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -524,7 +524,7 @@ function subirImg4() {
 //----------------imagen 5------------------------
 subirImagenAfirebase5 = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = fichero5.files[0];
     var uploadTask = storageRef.child('FQ/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -551,7 +551,7 @@ subirImagenAfirebase5 = function () {
         },
 
         () => {
-            var downloadURL5='vacio'; 
+            var downloadURL5 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL5) => {
@@ -565,9 +565,9 @@ subirImagenAfirebase5 = function () {
                 db.collection("ImagenesInforme").add({
                     Url5: downloadURL5,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona5:zona5
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona5: zona5
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -576,7 +576,7 @@ subirImagenAfirebase5 = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -600,7 +600,7 @@ function subirImg5() {
 //---------------imagen 6------------------------
 subirImagenAfirebase6 = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = fichero6.files[0];
     var uploadTask = storageRef.child('FQ/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -627,7 +627,7 @@ subirImagenAfirebase6 = function () {
         },
 
         () => {
-            var downloadURL5='vacio'; 
+            var downloadURL5 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL6) => {
@@ -641,9 +641,9 @@ subirImagenAfirebase6 = function () {
                 db.collection("ImagenesInforme").add({
                     Url6: downloadURL6,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona6:zona6
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona6: zona6
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -652,7 +652,7 @@ subirImagenAfirebase6 = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -675,7 +675,7 @@ function subirImg6() {
 //---------------imagen 7-------------------------
 subirImagenAfirebase7 = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = fichero7.files[0];
     var uploadTask = storageRef.child('FQ/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -702,7 +702,7 @@ subirImagenAfirebase7 = function () {
         },
 
         () => {
-            var downloadURL5='vacio'; 
+            var downloadURL5 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL7) => {
@@ -715,9 +715,9 @@ subirImagenAfirebase7 = function () {
                 db.collection("ImagenesInforme").add({
                     Url7: downloadURL7,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona7:zona7,
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona7: zona7,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -726,7 +726,7 @@ subirImagenAfirebase7 = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -750,7 +750,7 @@ function subirImg7() {
 //---------------imagen 8------------------------
 subirImagenAfirebase8 = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = fichero8.files[0];
     var uploadTask = storageRef.child('FQ/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -777,7 +777,7 @@ subirImagenAfirebase8 = function () {
         },
 
         () => {
-            var downloadURL5='vacio'; 
+            var downloadURL5 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL8) => {
@@ -790,9 +790,9 @@ subirImagenAfirebase8 = function () {
                 db.collection("ImagenesInforme").add({
                     Url8: downloadURL8,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona8:zona8,
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona8: zona8,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -801,7 +801,7 @@ subirImagenAfirebase8 = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -825,7 +825,7 @@ function subirImg8() {
 //----------------imagen 9----------------------
 subirImagenAfirebase9 = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = fichero9.files[0];
     var uploadTask = storageRef.child('FQ/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -852,7 +852,7 @@ subirImagenAfirebase9 = function () {
         },
 
         () => {
-            var downloadURL5='vacio'; 
+            var downloadURL5 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL9) => {
@@ -865,9 +865,9 @@ subirImagenAfirebase9 = function () {
                 db.collection("ImagenesInforme").add({
                     Url9: downloadURL9,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona9:zona9,
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona9: zona9,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -876,7 +876,7 @@ subirImagenAfirebase9 = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -900,7 +900,7 @@ function subirImg9() {
 //----------------imagen 10---------------------
 subirImagenAfirebase10 = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = fichero10.files[0];
     var uploadTask = storageRef.child('FQ/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -927,7 +927,7 @@ subirImagenAfirebase10 = function () {
         },
 
         () => {
-            var downloadURL5='vacio'; 
+            var downloadURL5 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL10) => {
@@ -940,9 +940,9 @@ subirImagenAfirebase10 = function () {
                 db.collection("ImagenesInforme").add({
                     Url10: downloadURL10,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona10:zona10,
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona10: zona10,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -951,7 +951,7 @@ subirImagenAfirebase10 = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -975,10 +975,10 @@ function subirImg10() {
 //--------------------------imagen 11------------------------
 subirImagenAfirebase11 = function () {
     //alert('subir');
-    if(fichero11){
-        fichero11=fichero11;
-    }else{
-        fichero11='vacio';
+    if (fichero11) {
+        fichero11 = fichero11;
+    } else {
+        fichero11 = 'vacio';
     }
     var imagenASubir;
     var imagenASubir = fichero11.files[0];
@@ -1006,7 +1006,7 @@ subirImagenAfirebase11 = function () {
         },
 
         () => {
-            var downloadURL5='vacio'; 
+            var downloadURL5 = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL11) => {
@@ -1019,9 +1019,9 @@ subirImagenAfirebase11 = function () {
                 db.collection("ImagenesInforme").add({
                     Url11: downloadURL11,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
-                    Zona11:zona11,
+                    Nit: nit,
+                    Fecha: fecha,
+                    Zona11: zona11,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -1030,7 +1030,7 @@ subirImagenAfirebase11 = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -1044,7 +1044,7 @@ subirImagenAfirebase11 = function () {
 
 subirImagenAfirebaseFirma = function () {
     //alert('subir');
-    
+
     var imagenASubir;
     var imagenASubir = ficheroF.files[0];
     var uploadTask = storageRef.child('Firmas/' + imagenASubir.name + '-' + new Date()).put(imagenASubir);
@@ -1071,7 +1071,7 @@ subirImagenAfirebaseFirma = function () {
         },
 
         () => {
-            var downloadURLFirma='vacio'; 
+            var downloadURLFirma = 'vacio';
             // Handle successful uploads on complete
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURLFirma) => {
@@ -1085,8 +1085,8 @@ subirImagenAfirebaseFirma = function () {
                 db.collection("ImagenesFirmasInfor").add({
                     Url1: downloadURLFirma,
                     Documento: documento,
-                    Nit:nit,
-                    Fecha:fecha,
+                    Nit: nit,
+                    Fecha: fecha,
                     //Zona1:zona
                 })
                     .then((docRef) => {
@@ -1096,7 +1096,7 @@ subirImagenAfirebaseFirma = function () {
                             '',
                             'success'
                         )
-                        
+
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -1117,14 +1117,14 @@ function subirImg11() {
 
 }
 
-function testSplit(){
+function testSplit() {
     /*var centrocos=document.getElementById('centroco').value;
     var divisiones = parseInt(centrocos.split(" ", 1)) ;
     console.log(typeof divisiones)*/
     //console.log("Blue Whale".indexOf("rojo"))
-    var one="HOLA";
-    var dos="OLGA";
-    var test=one.indexOf("OL");
+    var one = "HOLA";
+    var dos = "OLGA";
+    var test = one.indexOf("OL");
     console.log(test);
 
 }
@@ -1132,96 +1132,96 @@ function testSplit(){
 
 
 
-function Registrar(){
+function Registrar() {
 
-    if(document.getElementById('nombre').value!='' && document.getElementById('centroco').value!='' && document.getElementById('fecha').value!='' /*&& document.getElementById('zona1').value!='' && document.getElementById('estado1').value!=''  && document.getElementById('concep1').value!='' && document.getElementById('estad1').value!=''*/){ 
+    if (document.getElementById('nombre').value != '' && document.getElementById('centroco').value != '' && document.getElementById('fecha').value != '' /*&& document.getElementById('zona1').value!='' && document.getElementById('estado1').value!=''  && document.getElementById('concep1').value!='' && document.getElementById('estad1').value!=''*/) {
 
         if (confirm("Seguro que desea continuar con el registro?")) {
 
             // inicializo variable checkbox
 
-            let cb1=false;
-            let cb2=false;
-            let cb3=false;
-            let cb4=false;
-            let cb5=false;
-            let cb6=false;
-            let cb7=false;
-            let cb8=false;
-            let cb9=false;
-            let cb10=false;
-            let cb11=false;
+            let cb1 = false;
+            let cb2 = false;
+            let cb3 = false;
+            let cb4 = false;
+            let cb5 = false;
+            let cb6 = false;
+            let cb7 = false;
+            let cb8 = false;
+            let cb9 = false;
+            let cb10 = false;
+            let cb11 = false;
 
 
-            var documento=document.getElementById('documento').value;
-            var nombre=document.getElementById('nombre').value;
-            var nit= document.getElementById('nit').value;
-            var centrocos=document.getElementById('centroco').value;
-            var fecha=document.getElementById('fecha').value;
-        
-            var zon1=document.getElementById('zona1').value;
-            var estado1=document.getElementById('estado1').value;
-            
-            var zon2=document.getElementById('zona2').value;
-            var estado2=document.getElementById('estado2').value;
-            
-            var zon3=document.getElementById('zona3').value;
-            var estado3=document.getElementById('estado3').value;
-            
-            var zon4=document.getElementById('zona4').value;
-            var estado4=document.getElementById('estado4').value;
-            
-            var zon5=document.getElementById('zona5').value;
-            var estado5=document.getElementById('estado5').value;
-            
-            var zon6=document.getElementById('zona6').value;
-            var estado6=document.getElementById('estado6').value;
-            
-            var zon7=document.getElementById('zona7').value;
-            var estado7=document.getElementById('estado7').value;
-            
-            var zon8=document.getElementById('zona8').value;
-            var estado8=document.getElementById('estado8').value;
-            
-            var zon9=document.getElementById('zona9').value;
-            var estado9=document.getElementById('estado9').value;
-            
-            var zon10=document.getElementById('zona10').value;
-            var estado10=document.getElementById('estado10').value;
-            
-            var zon11=document.getElementById('zona11').value;
-            var estado11=document.getElementById('estado11').value;
-        
+            var documento = document.getElementById('documento').value;
+            var nombre = document.getElementById('nombre').value;
+            var nit = document.getElementById('nit').value;
+            var centrocos = document.getElementById('centroco').value;
+            var fecha = document.getElementById('fecha').value;
+
+            var zon1 = document.getElementById('zona1').value;
+            var estado1 = document.getElementById('estado1').value;
+
+            var zon2 = document.getElementById('zona2').value;
+            var estado2 = document.getElementById('estado2').value;
+
+            var zon3 = document.getElementById('zona3').value;
+            var estado3 = document.getElementById('estado3').value;
+
+            var zon4 = document.getElementById('zona4').value;
+            var estado4 = document.getElementById('estado4').value;
+
+            var zon5 = document.getElementById('zona5').value;
+            var estado5 = document.getElementById('estado5').value;
+
+            var zon6 = document.getElementById('zona6').value;
+            var estado6 = document.getElementById('estado6').value;
+
+            var zon7 = document.getElementById('zona7').value;
+            var estado7 = document.getElementById('estado7').value;
+
+            var zon8 = document.getElementById('zona8').value;
+            var estado8 = document.getElementById('estado8').value;
+
+            var zon9 = document.getElementById('zona9').value;
+            var estado9 = document.getElementById('estado9').value;
+
+            var zon10 = document.getElementById('zona10').value;
+            var estado10 = document.getElementById('estado10').value;
+
+            var zon11 = document.getElementById('zona11').value;
+            var estado11 = document.getElementById('estado11').value;
+
             //------------segundo informe-------------------------
-            var concepto1=document.getElementById('concep1').value;
-            var estatus1=document.getElementById('estad1').value;
-            var concepto2=document.getElementById('concep2').value;
-            var estatus2=document.getElementById('estad2').value;
-            var concepto3=document.getElementById('concep3').value;
-            var estatus3=document.getElementById('estad3').value;
-            var concepto4=document.getElementById('concep4').value;
-            var estatus4=document.getElementById('estad4').value;
-            var concepto5=document.getElementById('concep5').value;
-            var estatus5=document.getElementById('estad5').value;
-            var concepto6=document.getElementById('concep6').value;
-            var estatus6=document.getElementById('estad6').value;
-            var concepto7=document.getElementById('concep7').value;
-            var estatus7=document.getElementById('estad7').value;
-            var concepto8=document.getElementById('concep8').value;
-            var estatus8=document.getElementById('estad8').value;
-            var concepto9=document.getElementById('concep9').value;
-            var estatus9=document.getElementById('estad9').value;
-            var concepto10=document.getElementById('concep10').value;
-            var estatus10=document.getElementById('estad10').value;
-            var concepto11=document.getElementById('concep11').value;
-            var estatus11=document.getElementById('estad11').value;
-            var concepto12=document.getElementById('concep12').value;
-            var estatus12=document.getElementById('estad12').value;
-        
-            var fechaLarge= new Date();
-            var ingreso=document.getElementById('mailUser').value;
+            var concepto1 = document.getElementById('concep1').value;
+            var estatus1 = document.getElementById('estad1').value;
+            var concepto2 = document.getElementById('concep2').value;
+            var estatus2 = document.getElementById('estad2').value;
+            var concepto3 = document.getElementById('concep3').value;
+            var estatus3 = document.getElementById('estad3').value;
+            var concepto4 = document.getElementById('concep4').value;
+            var estatus4 = document.getElementById('estad4').value;
+            var concepto5 = document.getElementById('concep5').value;
+            var estatus5 = document.getElementById('estad5').value;
+            var concepto6 = document.getElementById('concep6').value;
+            var estatus6 = document.getElementById('estad6').value;
+            var concepto7 = document.getElementById('concep7').value;
+            var estatus7 = document.getElementById('estad7').value;
+            var concepto8 = document.getElementById('concep8').value;
+            var estatus8 = document.getElementById('estad8').value;
+            var concepto9 = document.getElementById('concep9').value;
+            var estatus9 = document.getElementById('estad9').value;
+            var concepto10 = document.getElementById('concep10').value;
+            var estatus10 = document.getElementById('estad10').value;
+            var concepto11 = document.getElementById('concep11').value;
+            var estatus11 = document.getElementById('estad11').value;
+            var concepto12 = document.getElementById('concep12').value;
+            var estatus12 = document.getElementById('estad12').value;
 
-            var divisiones = String(centrocos.split(" ", 1)) ;
+            var fechaLarge = new Date();
+            var ingreso = document.getElementById('mailUser').value;
+
+            var divisiones = String(centrocos.split(" ", 1));
 
             if (document.getElementById('cb1').checked) {
                 cb1 = true;
@@ -1257,112 +1257,112 @@ function Registrar(){
                 cb11 = true;
             }
 
-             //--------------------firma--------------------
-             ficheroF = document.getElementById('ficheroF');
+            //--------------------firma--------------------
+            ficheroF = document.getElementById('ficheroF');
 
-             //fichero.addEventListener('onclick', subirImagenAfirebase, false);
-             subirImagenAfirebaseFirma();
-             //---------------------------------------------
-            numero=caso;
+            //fichero.addEventListener('onclick', subirImagenAfirebase, false);
+            subirImagenAfirebaseFirma();
+            //---------------------------------------------
+            numero = caso;
             let registro = document.getElementById('caso').value;
 
             db.collection("RegistroInforme").add({
-                Numero:Number(numero),
-                Id:registro,
-                Cb1:cb1,
-                Cb2:cb2,
-                Cb3:cb3,
-                Cb4:cb4,
-                Cb5:cb5,
-                Cb6:cb6,
-                Cb7:cb7,
-                Cb8:cb8,
-                Cb9:cb9,
-                Cb10:cb10,
-                Cb11:cb11,
-                Registra:ingreso,
+                Numero: Number(numero),
+                Id: registro,
+                Cb1: cb1,
+                Cb2: cb2,
+                Cb3: cb3,
+                Cb4: cb4,
+                Cb5: cb5,
+                Cb6: cb6,
+                Cb7: cb7,
+                Cb8: cb8,
+                Cb9: cb9,
+                Cb10: cb10,
+                Cb11: cb11,
+                Registra: ingreso,
                 Documento: documento,
                 Nombre: nombre,
-                Nit:divisiones,
-                CentroCostos:centrocos,
-                Fecha2:fechaLarge,
-                Fecha:fecha,
-                Zona1:zon1,
-                Estado1:estado1,
-                Zona2:zon2,
-                Estado2:estado2,
-                Zona3:zon3,
-                Estado3:estado3,
-                Zona4:zon4,
-                Estado4:estado4,
-                Zona5:zon5,
-                Estado5:estado5,
-                Zona6:zon6,
-                Estado6:estado6,
-                Zona7:zon7,
-                Estado7:estado7,
-                Zona8:zon8,
-                Estado8:estado8,
-                Zona9:zon9,
-                Estado9:estado9,
-                Zona10:zon10,
-                Estado10:estado10,
-                Zona11:zon11,
-                Estado11:estado11,
+                Nit: divisiones,
+                CentroCostos: centrocos,
+                Fecha2: fechaLarge,
+                Fecha: fecha,
+                Zona1: zon1,
+                Estado1: estado1,
+                Zona2: zon2,
+                Estado2: estado2,
+                Zona3: zon3,
+                Estado3: estado3,
+                Zona4: zon4,
+                Estado4: estado4,
+                Zona5: zon5,
+                Estado5: estado5,
+                Zona6: zon6,
+                Estado6: estado6,
+                Zona7: zon7,
+                Estado7: estado7,
+                Zona8: zon8,
+                Estado8: estado8,
+                Zona9: zon9,
+                Estado9: estado9,
+                Zona10: zon10,
+                Estado10: estado10,
+                Zona11: zon11,
+                Estado11: estado11,
 
                 Latitud: latitud,
                 Longitud: longitud,
                 Ubicacion: NameCity,
-        
+
                 //-----------2da parte---
-                concepto1:concepto1,
-                EstatusInforme1:estatus1,
-                concepto2:concepto2,
-                EstatusInforme2:estatus2,
-                concepto3:concepto3,
-                EstatusInforme3:estatus3,
-                concepto4:concepto4,
-                EstatusInforme4:estatus4,
-                concepto5:concepto5,
-                EstatusInforme5:estatus5,
-                concepto6:concepto6,
-                EstatusInforme6:estatus6,
-                concepto7:concepto7,
-                EstatusInforme7:estatus7,
-                concepto8:concepto8,
-                EstatusInforme8:estatus8,
-                concepto9:concepto9,
-                EstatusInforme9:estatus9,
-                concepto10:concepto10,
-                EstatusInforme10:estatus10,
-                concepto11:concepto11,
-                EstatusInforme11:estatus11,
-                concepto12:concepto12,
-                EstatusInforme12:estatus12,
-        
-        
-        
+                concepto1: concepto1,
+                EstatusInforme1: estatus1,
+                concepto2: concepto2,
+                EstatusInforme2: estatus2,
+                concepto3: concepto3,
+                EstatusInforme3: estatus3,
+                concepto4: concepto4,
+                EstatusInforme4: estatus4,
+                concepto5: concepto5,
+                EstatusInforme5: estatus5,
+                concepto6: concepto6,
+                EstatusInforme6: estatus6,
+                concepto7: concepto7,
+                EstatusInforme7: estatus7,
+                concepto8: concepto8,
+                EstatusInforme8: estatus8,
+                concepto9: concepto9,
+                EstatusInforme9: estatus9,
+                concepto10: concepto10,
+                EstatusInforme10: estatus10,
+                concepto11: concepto11,
+                EstatusInforme11: estatus11,
+                concepto12: concepto12,
+                EstatusInforme12: estatus12,
+
+
+
             })
                 .then((docRef) => {
                     console.log("Document written with ID: ", docRef.id);
                 })
-                Swal.fire(
-                    'Registro Exitoso!!!',
-                    'Ha completado el registro del formato..',
-                    'success'
-                )
-                setInterval("location.reload()", 3000)
+            Swal.fire(
+                'Registro Exitoso!!!',
+                'Ha completado el registro del formato..',
+                'success'
+            )
+            setInterval("location.reload()", 3000)
                 .catch((error) => {
                     console.error("Error adding document: ", error);
                 });
-        
-        
 
-        }else{
+
+
+        } else {
 
         }
 
-    }else{
+    } else {
         Swal.fire(
             'Complete los campos',
             '',
@@ -1371,7 +1371,7 @@ function Registrar(){
     }
 
 
-   
+
 }
 
 
@@ -1379,11 +1379,11 @@ function Registrar(){
 
 function Documento(val) {
 
-    val2=String(val);
+    val2 = String(val);
 
     //tabl = document.getElementById("resul11");
     showData();
-    
+
     db.collection("Empleados").where("Cedula", "==", val2)
         .get()
         .then(function (querySnapshot) {
@@ -1392,7 +1392,7 @@ function Documento(val) {
 
                 console.log(doc.id, " => ", doc.data());
                 /* var mq = `${doc.data().MAQUINA}`;*/
-                var nombre = `${doc.data().Empleado}`; 
+                var nombre = `${doc.data().Empleado}`;
                 var centroC = `${doc.data().Centro_de_costo}`;
 
 
@@ -1430,122 +1430,122 @@ function Documento(val) {
 
 
 
-//-----------------------------------------
+    //-----------------------------------------
 
 
 }
-function Calcular(){
+function Calcular() {
 
-    let estatus1=Number(document.getElementById('estad1').value);
-    let estatus2=Number(document.getElementById('estad2').value) ;
-    let estatus3=Number(document.getElementById('estad3').value) ;
-    let estatus4=Number(document.getElementById('estad4').value) ;
-    let estatus5=Number(document.getElementById('estad5').value) ;
-    let estatus6=Number(document.getElementById('estad6').value) ;
-    var estatus7=Number(document.getElementById('estad7').value) ;
-    var estatus8=Number(document.getElementById('estad8').value) ;
-    var estatus9=Number(document.getElementById('estad9').value) ;
-    var estatus10=Number(document.getElementById('estad10').value) ;
-    var estatus11=Number(document.getElementById('estad11').value) ;
-    var estatus12=Number(document.getElementById('estad12').value) ;
+    let estatus1 = Number(document.getElementById('estad1').value);
+    let estatus2 = Number(document.getElementById('estad2').value);
+    let estatus3 = Number(document.getElementById('estad3').value);
+    let estatus4 = Number(document.getElementById('estad4').value);
+    let estatus5 = Number(document.getElementById('estad5').value);
+    let estatus6 = Number(document.getElementById('estad6').value);
+    var estatus7 = Number(document.getElementById('estad7').value);
+    var estatus8 = Number(document.getElementById('estad8').value);
+    var estatus9 = Number(document.getElementById('estad9').value);
+    var estatus10 = Number(document.getElementById('estad10').value);
+    var estatus11 = Number(document.getElementById('estad11').value);
+    var estatus12 = Number(document.getElementById('estad12').value);
 
-    
-        
-    contador=0;
-    if(estatus1!=0 ){
-     contador++;
+
+
+    contador = 0;
+    if (estatus1 != 0) {
+        contador++;
     }
-    if(estatus2!=0){
-     contador++;
+    if (estatus2 != 0) {
+        contador++;
     }
-    if(estatus3!=0){
-     contador++;
+    if (estatus3 != 0) {
+        contador++;
     }
-    if(estatus4!=0){
-     contador++;
+    if (estatus4 != 0) {
+        contador++;
     }
-    if(estatus5!=0){
-     contador++;
+    if (estatus5 != 0) {
+        contador++;
     }
-    if(estatus6!=0){
-     contador++;
+    if (estatus6 != 0) {
+        contador++;
     }
-    if(estatus7!=0){
-     contador++;
+    if (estatus7 != 0) {
+        contador++;
     }
-    if(estatus8!=0){
-     contador++;
+    if (estatus8 != 0) {
+        contador++;
     }
-    if(estatus9!=0){
-     contador++;
+    if (estatus9 != 0) {
+        contador++;
     }
-    if(estatus10!=0){
-     contador++;
+    if (estatus10 != 0) {
+        contador++;
     }
-    if(estatus11!=0){
-     contador++;
+    if (estatus11 != 0) {
+        contador++;
     }
-    if(estatus12!=0){
-     contador++;
+    if (estatus12 != 0) {
+        contador++;
     }
 
     //console.log('el numero es'+contador);
-    var promedio = (estatus1 + estatus2 + estatus3 + estatus4 + estatus5 + estatus6 + estatus7 + estatus8 + estatus9 + estatus10 + estatus11 + estatus12)/contador;
+    var promedio = (estatus1 + estatus2 + estatus3 + estatus4 + estatus5 + estatus6 + estatus7 + estatus8 + estatus9 + estatus10 + estatus11 + estatus12) / contador;
 
-    document.getElementById('calif').value=promedio;
+    document.getElementById('calif').value = promedio;
 
 }
 
 function Nit(val) {
 
-//tabl = document.getElementById("resul11");
-val3=String(val);
+    //tabl = document.getElementById("resul11");
+    val3 = String(val);
 
-db.collection("Clientes").where("Nit", "==", val3)
-.get()
-.then(function (querySnapshot) {
-    //tabl.innerHTML = "";
-    querySnapshot.forEach(function (doc) {
+    db.collection("Clientes").where("Nit", "==", val3)
+        .get()
+        .then(function (querySnapshot) {
+            //tabl.innerHTML = "";
+            querySnapshot.forEach(function (doc) {
 
-        console.log(doc.id, " => ", doc.data());
-        /* var mq = `${doc.data().MAQUINA}`;*/
-        var cliente = `${doc.data().Cliente}`;
-        
-
-        //opciones = document.createElement('option');
-        //opciones.setAttribute('value','value1');
-
-        document.getElementById('centroco').value = cliente;
-        //document.getElementById('numero').value = tlfno;
-        //document.getElementById('ubicacion').value = dire
-        //document.getElementById('codLista').value = listaPrec;
-
-        /*  tabl.innerHTML += `
-              <tr>
-              <option value="${mq}" >${mq}</option>
-              
-              
-         
-  
-        
-          </tr>
-          `*/
+                console.log(doc.id, " => ", doc.data());
+                /* var mq = `${doc.data().MAQUINA}`;*/
+                var cliente = `${doc.data().Cliente}`;
 
 
+                //opciones = document.createElement('option');
+                //opciones.setAttribute('value','value1');
 
-    });
-})
-.catch((error) => {
-    console.log("Error getting documents: ", error);
-});
+                document.getElementById('centroco').value = cliente;
+                //document.getElementById('numero').value = tlfno;
+                //document.getElementById('ubicacion').value = dire
+                //document.getElementById('codLista').value = listaPrec;
 
-//-----------------------------------------
+                /*  tabl.innerHTML += `
+                      <tr>
+                      <option value="${mq}" >${mq}</option>
+                      
+                      
+                 
+          
+                
+                  </tr>
+                  `*/
 
 
 
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+
+    //-----------------------------------------
 
 
-//-----------------------------------------
+
+
+
+    //-----------------------------------------
 
 
 }
@@ -1574,7 +1574,7 @@ miCanvas.height = 200;
 /**
  * Funcion que empieza a dibujar la linea
  */
-function empezarDibujo () {
+function empezarDibujo() {
     pintarLinea = true;
     lineas.push([]);
 };
@@ -1592,7 +1592,7 @@ function guardarLinea() {
 /**
  * Funcion dibuja la linea
  */
-function dibujarLinea (event) {
+function dibujarLinea(event) {
     event.preventDefault();
     if (pintarLinea) {
         let ctx = miCanvas.getContext('2d')
@@ -1628,7 +1628,7 @@ function dibujarLinea (event) {
 /**
  * Funcion que deja de dibujar la linea
  */
-function pararDibujar () {
+function pararDibujar() {
     pintarLinea = false;
     guardarLinea();
 }
@@ -1694,171 +1694,171 @@ descargar = function convertCanvasToImgElement() {
 }
 
 
-showData=function Mostrar(){
+showData = function Mostrar() {
 
     var tabl23 = document.getElementById("tabla");
-    
-  
+
+
     dataSet = new Array();
     var i = 1;
 
-    let centroco=document.getElementById('centroco').value;
+    let centroco = document.getElementById('centroco').value;
     //901218738 - CONJ. RES. TERRITORIO AURORA
-    db.collection("RegistroInforme").where("CentroCostos","==",'901218738 - CONJ. RES. TERRITORIO AURORA').limit(50).get().then(function (querySnapshot) {
+    db.collection("RegistroInforme").where("CentroCostos", "==", '901218738 - CONJ. RES. TERRITORIO AURORA').limit(50).get().then(function (querySnapshot) {
         tabl23.innerHTML = "";
         querySnapshot.forEach(function (doc) {
-          // doc.data() is never undefined for query doc snapshots
-          console.log(doc.id, " => ", doc.data());
-          /*Swal.fire(
-            'Consulta exitosa!!!',
-            '',
-            'success'
-          )*/
-          let Fecha = `${doc.data().Fecha}`;
-          let Nombre = `${doc.data().Nombre}`; 
-          let Cb1 = `${doc.data().Cb1}`;
-          let Cb2 = `${doc.data().Cb2}`;
-          let Cb3 = `${doc.data().Cb3}`;
-          let Cb4 = `${doc.data().Cb4}`;
-          let Cb5 = `${doc.data().Cb5}`;
-          let Cb6 = `${doc.data().Cb6}`;
-          let Cb7 = `${doc.data().Cb7}`;
-          let Cb8 = `${doc.data().Cb8}`;
-          let Cb9 = `${doc.data().Cb9}`;
-          let Cb10 = `${doc.data().Cb10}`;
-          let Cb11 = `${doc.data().Cb11}`;  
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            /*Swal.fire(
+              'Consulta exitosa!!!',
+              '',
+              'success'
+            )*/
+            let Fecha = `${doc.data().Fecha}`;
+            let Nombre = `${doc.data().Nombre}`;
+            let Cb1 = `${doc.data().Cb1}`;
+            let Cb2 = `${doc.data().Cb2}`;
+            let Cb3 = `${doc.data().Cb3}`;
+            let Cb4 = `${doc.data().Cb4}`;
+            let Cb5 = `${doc.data().Cb5}`;
+            let Cb6 = `${doc.data().Cb6}`;
+            let Cb7 = `${doc.data().Cb7}`;
+            let Cb8 = `${doc.data().Cb8}`;
+            let Cb9 = `${doc.data().Cb9}`;
+            let Cb10 = `${doc.data().Cb10}`;
+            let Cb11 = `${doc.data().Cb11}`;
 
-          let Zona1 = `${doc.data().Zona1}`;
-          let Zona2 = `${doc.data().Zona2}`;
-          let Zona3 = `${doc.data().Zona3}`;
-          let Zona4 = `${doc.data().Zona4}`;
-          let Zona5 = `${doc.data().Zona5}`;
-          let Zona6 = `${doc.data().Zona6}`;
-          let Zona7 = `${doc.data().Zona7}`;
-          let Zona8 = `${doc.data().Zona8}`;
-          let Zona9 = `${doc.data().Zona9}`;
-          let Zona10 = `${doc.data().Zona10}`;
-          let Zona11 = `${doc.data().Zona11}`;  
+            let Zona1 = `${doc.data().Zona1}`;
+            let Zona2 = `${doc.data().Zona2}`;
+            let Zona3 = `${doc.data().Zona3}`;
+            let Zona4 = `${doc.data().Zona4}`;
+            let Zona5 = `${doc.data().Zona5}`;
+            let Zona6 = `${doc.data().Zona6}`;
+            let Zona7 = `${doc.data().Zona7}`;
+            let Zona8 = `${doc.data().Zona8}`;
+            let Zona9 = `${doc.data().Zona9}`;
+            let Zona10 = `${doc.data().Zona10}`;
+            let Zona11 = `${doc.data().Zona11}`;
 
-          let Registra = `${doc.data().Registra}`;  
-          let id = `${doc.data().Id}`;
-          let showZone1='';  
-          let showZone2='';  
-          let showZone3='';  
-          let showZone4='';  
-          let showZone5='';  
-          let showZone6='';  
-          let showZone7='';  
-          let showZone8='';  
-          let showZone9='';  
-          let showZone10='';  
-          let showZone11='';  
+            let Registra = `${doc.data().Registra}`;
+            let id = `${doc.data().Id}`;
+            let showZone1 = '';
+            let showZone2 = '';
+            let showZone3 = '';
+            let showZone4 = '';
+            let showZone5 = '';
+            let showZone6 = '';
+            let showZone7 = '';
+            let showZone8 = '';
+            let showZone9 = '';
+            let showZone10 = '';
+            let showZone11 = '';
 
 
-          if(Cb1==='true'){
-            showZone1=Zona1;
-          }
-          if(Cb2==='true'){
-            showZone2=Zona2;
-          }
-          if(Cb3==='true'){
-            showZone3=Zona3;
-          }
-          if(Cb4==='true'){
-            showZone4=Zona4;
-          }
-          if(Cb5==='true'){
-            showZone5=Zona5;
-          }
-          if(Cb6==='true'){
-            showZone6=Zona6;
-          }
-          if(Cb7==='true'){
-            showZone7=Zona7;
-          }
-          if(Cb8==='true'){
-            showZone8=Zona8;
-          }
-          if(Cb9==='true'){
-            showZone9=Zona9;
-          }
-          if(Cb10==='true'){
-            showZone10=Zona10;
-          }
-          if(Cb11==='true'){
-            showZone11=Zona11;
-          }
+            if (Cb1 === 'true') {
+                showZone1 = Zona1;
+            }
+            if (Cb2 === 'true') {
+                showZone2 = Zona2;
+            }
+            if (Cb3 === 'true') {
+                showZone3 = Zona3;
+            }
+            if (Cb4 === 'true') {
+                showZone4 = Zona4;
+            }
+            if (Cb5 === 'true') {
+                showZone5 = Zona5;
+            }
+            if (Cb6 === 'true') {
+                showZone6 = Zona6;
+            }
+            if (Cb7 === 'true') {
+                showZone7 = Zona7;
+            }
+            if (Cb8 === 'true') {
+                showZone8 = Zona8;
+            }
+            if (Cb9 === 'true') {
+                showZone9 = Zona9;
+            }
+            if (Cb10 === 'true') {
+                showZone10 = Zona10;
+            }
+            if (Cb11 === 'true') {
+                showZone11 = Zona11;
+            }
 
-          let zonasShow = showZone1+','+showZone2+','+showZone3+','+showZone4+','+showZone5+','+showZone6+','+showZone7+','+showZone8+','+showZone9+','+showZone10+','+showZone11;
-          
-          
-  
-        
-          dataSet.push([id,Fecha,zonasShow,Registra]);
-          //console.log('usuario:' + usuario + '-' + 'modificado:' + modificadoX + '-' + 'fecha' + Fecha);
-  
-          i = i + 1;
-  
-  
-          $(document).ready(function () {
-            var tablaSuma = $('#example').DataTable({
-  
-              dom: "Bfrtip",
-              pageLength: 50,
-              resposive: true,
-  
-  
-  
-  
-  
-  
-              data: dataSet,
-              "bDestroy": true,
-              columnDefs: [{
-                "defaultContent": "",
-                "targets": "_all"
-              }],
-              columns: [
-                { title: "Id" },
-                { title: "Fecha" },
-                { title: "Area" },
-                { title: "Registra" },
-               
-                
-                
-              ],
-  
-  
-              //para cambiar el lenguaje a español
-              "language": {
-                "lengthMenu": "Mostrar _MENU_ registros",
-                "zeroRecords": "No se encontraron resultados",
-                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sSearch": "Buscar:",
-                "oPaginate": {
-                  "sFirst": "Primero",
-                  "sLast": "Último",
-                  "sNext": "Siguiente",
-                  "sPrevious": "Anterior"
-                },
-  
-                "sProcessing": "Procesando...",
-  
-              }
-  
+            let zonasShow = showZone1 + ',' + showZone2 + ',' + showZone3 + ',' + showZone4 + ',' + showZone5 + ',' + showZone6 + ',' + showZone7 + ',' + showZone8 + ',' + showZone9 + ',' + showZone10 + ',' + showZone11;
+
+
+
+
+            dataSet.push([id, Fecha, zonasShow, Registra]);
+            //console.log('usuario:' + usuario + '-' + 'modificado:' + modificadoX + '-' + 'fecha' + Fecha);
+
+            i = i + 1;
+
+
+            $(document).ready(function () {
+                var tablaSuma = $('#example').DataTable({
+
+                    dom: "Bfrtip",
+                    pageLength: 50,
+                    resposive: true,
+
+
+
+
+
+
+                    data: dataSet,
+                    "bDestroy": true,
+                    columnDefs: [{
+                        "defaultContent": "",
+                        "targets": "_all"
+                    }],
+                    columns: [
+                        { title: "Id" },
+                        { title: "Fecha" },
+                        { title: "Area" },
+                        { title: "Registra" },
+
+
+
+                    ],
+
+
+                    //para cambiar el lenguaje a español
+                    "language": {
+                        "lengthMenu": "Mostrar _MENU_ registros",
+                        "zeroRecords": "No se encontraron resultados",
+                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                        "sSearch": "Buscar:",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+
+                        "sProcessing": "Procesando...",
+
+                    }
+
+                });
+
+
             });
-  
-  
-          });
-          //info2daParte();
-  
-  
-  
-  
-  
-  
+            //info2daParte();
+
+
+
+
+
+
         });
 
         /*Swal.fire(
@@ -1866,21 +1866,21 @@ showData=function Mostrar(){
           'Se puede demorar unos segundos...',
           'success'
         ) */
-  
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
-  
+
+    })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+
     //-------------------------------------
-  
-  
-
-  }
 
 
-  function Consultar(){
-    
+
+}
+
+
+function Consultar() {
+
     auth.onAuthStateChanged(user => {
         if (user) {
 
@@ -1907,7 +1907,7 @@ showData=function Mostrar(){
 
                         var Id = `${doc.data().Id}`;
 
-                        
+
                         var Zona1 = `${doc.data().Zona1}`;
                         var Zona2 = `${doc.data().Zona2}`;
                         var Zona3 = `${doc.data().Zona3}`;
@@ -1955,8 +1955,8 @@ showData=function Mostrar(){
                         document.getElementById('cb9').checked = Cb9Response;
                         document.getElementById('cb10').checked = Cb10Response;
                         document.getElementById('cb11').checked = Cb11Response;
-                        
-                      
+
+
                         document.getElementById('documento').value = Documento;
                         document.getElementById('nombre').value = Nombre;
                         document.getElementById('centroco').value = CentroCostos;
@@ -1981,29 +1981,71 @@ showData=function Mostrar(){
 
 
                         //--------------------actualizar----------------------
-                        /*actuali = function () {
+                        actuali = function () {
 
 
-                            var usuarioIni = document.getElementById('usuarioIni').value;
+                            let cb1=false;
+                            let cb2=false;
+                            let cb3=false;
+                            let cb4=false;
+                            let cb5=false;
+                            let cb6=false;
+                            let cb7=false;
+                            let cb8=false;
+                            let cb9=false;
+                            let cb10=false;
+                            let cb11=false;
 
-                            //estado2 = 0;
-                            var estado1 = 'Confirmado';
+                            if (document.getElementById('cb1').checked) {
+                                cb1 = true;
+                            }
+                            if (document.getElementById('cb2').checked) {
+                                cb2 = true;
+                            }
+                            if (document.getElementById('cb3').checked) {
+                                cb3 = true;
+                            }
+                            if (document.getElementById('cb4').checked) {
+                                cb4 = true;
+                            }
+                            if (document.getElementById('cb5').checked) {
+                                cb5 = true;
+                            }
+                            if (document.getElementById('cb6').checked) {
+                                cb6 = true;
+                            }
+                            if (document.getElementById('cb7').checked) {
+                                cb7 = true;
+                            }
+                            if (document.getElementById('cb8').checked) {
+                                cb8 = true;
+                            }
+                            if (document.getElementById('cb9').checked) {
+                                cb9 = true;
+                            }
+                            if (document.getElementById('cb10').checked) {
+                                cb10 = true;
+                            }
+                            if (document.getElementById('cb11').checked) {
+                                cb11 = true;
+                            }
 
-                            //estado2 = Number(Estado + 1);
 
-                            modificadoPor = user.email;
-
-                            var observaciones = document.getElementById('observaciones1').value;
-
-
-
-                            var washingtonRef = db.collection("Facturas").doc(doc.id);
+                            var washingtonRef = db.collection("RegistroInforme").doc(doc.id);
                             return washingtonRef.update({
 
-                                UsuarioModi: usuarioIni,
 
-                                Estado: estado1,
-                                Observaciones: observaciones,
+                                Cb1: cb1,
+                                Cb2: cb2,
+                                Cb3: cb3,
+                                Cb4: cb4,
+                                Cb5: cb5,
+                                Cb6: cb6,
+                                Cb7: cb7,
+                                Cb8: cb8,
+                                Cb9: cb9,
+                                Cb10: cb10,
+                                Cb11: cb11,
 
 
                             })
@@ -2024,7 +2066,7 @@ showData=function Mostrar(){
                                 });
 
 
-                        } */
+                        }
 
                         //--------------------fin actualizar--------------------
 
@@ -2056,4 +2098,37 @@ showData=function Mostrar(){
 
     //-----------------------------------------
 
-  }
+}
+
+
+function Actualizar() {
+    if (document.getElementById('mailUser').value != '') {
+
+
+        if (confirm("Seguro que desea continuar con el registro?")) {
+            actuali();
+        }
+        else {
+
+        }
+
+
+
+    } else {
+
+        Swal.fire(
+            'Este usuario no tiene permiso para esta acción',
+            '',
+            'error'
+        )
+
+
+    }
+    //----------------------------------------------
+    /*if (confirm("Seguro que desea actualizar el registro?")) {
+        actuali();
+    } else {
+
+    }*/
+
+}
