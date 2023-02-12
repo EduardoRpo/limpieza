@@ -1704,7 +1704,7 @@ showData = function Mostrar() {
 
     let centroco = document.getElementById('centroco').value;
     //901218738 - CONJ. RES. TERRITORIO AURORA
-    db.collection("RegistroInforme").where("CentroCostos", "==", '901218738 - CONJ. RES. TERRITORIO AURORA').limit(50).get().then(function (querySnapshot) {
+    db.collection("RegistroInforme")/*.where("CentroCostos", "==", centroco)*/.orderBy("Fecha2", "desc").limit(5).get().then(function (querySnapshot) {
         tabl23.innerHTML = "";
         querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
@@ -1716,17 +1716,18 @@ showData = function Mostrar() {
             )*/
             let Fecha = `${doc.data().Fecha}`;
             let Nombre = `${doc.data().Nombre}`;
-            let Cb1 = `${doc.data().Cb1}`;
-            let Cb2 = `${doc.data().Cb2}`;
-            let Cb3 = `${doc.data().Cb3}`;
-            let Cb4 = `${doc.data().Cb4}`;
-            let Cb5 = `${doc.data().Cb5}`;
-            let Cb6 = `${doc.data().Cb6}`;
-            let Cb7 = `${doc.data().Cb7}`;
-            let Cb8 = `${doc.data().Cb8}`;
-            let Cb9 = `${doc.data().Cb9}`;
-            let Cb10 = `${doc.data().Cb10}`;
-            let Cb11 = `${doc.data().Cb11}`;
+
+            let Estado1 = `${doc.data().Estado1}`;
+            let Estado2 = `${doc.data().Estado2}`;
+            let Estado3 = `${doc.data().Estado3}`;
+            let Estado4 = `${doc.data().Estado4}`;
+            let Estado5 = `${doc.data().Estado5}`;
+            let Estado6 = `${doc.data().Estado6}`;
+            let Estado7 = `${doc.data().Estado7}`;
+            let Estado8 = `${doc.data().Estado8}`;
+            let Estado9 = `${doc.data().Estado9}`;
+            let Estado10 = `${doc.data().Estado10}`;
+            let Estado11 = `${doc.data().Estado11}`;
 
             let Zona1 = `${doc.data().Zona1}`;
             let Zona2 = `${doc.data().Zona2}`;
@@ -1754,47 +1755,70 @@ showData = function Mostrar() {
             let showZone10 = '';
             let showZone11 = '';
 
-
-            if (Cb1 === 'true') {
-                showZone1 = Zona1;
-            }
-            if (Cb2 === 'true') {
-                showZone2 = Zona2;
-            }
-            if (Cb3 === 'true') {
-                showZone3 = Zona3;
-            }
-            if (Cb4 === 'true') {
-                showZone4 = Zona4;
-            }
-            if (Cb5 === 'true') {
-                showZone5 = Zona5;
-            }
-            if (Cb6 === 'true') {
-                showZone6 = Zona6;
-            }
-            if (Cb7 === 'true') {
-                showZone7 = Zona7;
-            }
-            if (Cb8 === 'true') {
-                showZone8 = Zona8;
-            }
-            if (Cb9 === 'true') {
-                showZone9 = Zona9;
-            }
-            if (Cb10 === 'true') {
-                showZone10 = Zona10;
-            }
-            if (Cb11 === 'true') {
-                showZone11 = Zona11;
-            }
-
-            let zonasShow = showZone1 + ',' + showZone2 + ',' + showZone3 + ',' + showZone4 + ',' + showZone5 + ',' + showZone6 + ',' + showZone7 + ',' + showZone8 + ',' + showZone9 + ',' + showZone10 + ',' + showZone11;
+            let showQua1 = '';
+            let showQua2 = '';
+            let showQua3 = '';
+            let showQua4 = '';
+            let showQua5 = '';
+            let showQua6 = '';
+            let showQua7 = '';
+            let showQua8 = '';
+            let showQua9 = '';
+            let showQua10 = '';
+            let showQua11 = '';
 
 
+            if (Estado1 <= '3') {
+                showZone1 = Zona1+'=';
+                showQua1 = Estado1+',';
+            }
+            if (Estado2 <= '3') {
+                showZone2 = Zona2+'=';
+                showQua2 = Estado2+',';
+            }
+            if (Estado3 <= '3') {
+                showZone3 = Zona3+'=';
+                showQua3 = Estado3+',';
+            }
+            if (Estado4 <= '3') {
+                showZone4 = Zona4+'=';
+                showQua4 = Estado4+',';
+            }
+            if (Estado5 <= '3') {
+                showZone5 = Zona5+'=';
+                showQua5 = Estado5+',';
+            }
+            if (Estado6 <= '3') {
+                showZone6 = Zona6+'=';
+                showQua6 = Estado6+',';
+            }
+            if (Estado7 <= '3') {
+                showZone7 = Zona7+'=';
+                showQua7 = Estado7+',';
+            }
+            if (Estado8 <= '3') {
+                showZone8 = Zona8+'=';
+                showQua8 = Estado8+',';
+            }
+            if (Estado9 <= '3') {
+                showZone9 = Zona9+'=';
+                showQua9 = Estado9+',';
+            }
+            if (Estado10 <= '3') {
+                showZone10 = Zona10+'=';
+                showQua10 = Estado10+',';
+            }
+            if (Estado11 <= '3') {
+                showZone11 = Zona11+'=';
+                showQua11 = Estado11+',';
+            } 
+
+            let zonasShow = showZone1 + showQua1   + showZone2 + showQua2 + showZone3  + showQua3 + showZone4  + showQua4  + showZone5  + showQua5  + showZone6  + showQua6  + showZone7 + showQua7  + showZone8  + showQua8  + showZone9 + showQua9  + showZone10  + showQua10  + showZone11 + showQua11 ; 
 
 
-            dataSet.push([id, Fecha, zonasShow, Registra]);
+
+
+            dataSet.push([Fecha, zonasShow, Nombre, Registra]);
             //console.log('usuario:' + usuario + '-' + 'modificado:' + modificadoX + '-' + 'fecha' + Fecha);
 
             i = i + 1;
@@ -1819,9 +1843,9 @@ showData = function Mostrar() {
                         "targets": "_all"
                     }],
                     columns: [
-                        { title: "Id" },
                         { title: "Fecha" },
                         { title: "Area" },
+                        { title: "Nombre" },
                         { title: "Registra" },
 
 
@@ -1981,7 +2005,7 @@ function Consultar() {
 
 
                         //--------------------actualizar----------------------
-                        actuali = function () {
+                        /*actuali = function () {
 
 
                             let cb1=false;
@@ -2066,7 +2090,7 @@ function Consultar() {
                                 });
 
 
-                        }
+                        } */
 
                         //--------------------fin actualizar--------------------
 
