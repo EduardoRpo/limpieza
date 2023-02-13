@@ -110,7 +110,8 @@ function consultarFechas() {
                         let Fecha = `${doc.data().Fecha}`;
 
                         if (CentroCostos == Costos1) {
-                            contador1 = querySnapshot.size;
+                            //contador1 = querySnapshot.size;
+                            contador1++
                             //console.log('tamaño' + querySnapshot.size)
 
                         }
