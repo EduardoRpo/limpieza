@@ -1382,7 +1382,9 @@ function Documento(val) {
     val2 = String(val);
 
     //tabl = document.getElementById("resul11");
-    showData();
+    //showData();
+    //Mostrar();
+    
 
     db.collection("Empleados").where("Cedula", "==", val2)
         .get()
@@ -1416,7 +1418,7 @@ function Documento(val) {
                   </tr>
                   `*/
 
-
+                  showData();
 
             });
         })
@@ -1694,7 +1696,7 @@ descargar = function convertCanvasToImgElement() {
 }
 
 
-showData = function Mostrar() {
+showData=function Mostrar() {
 
     var tabl23 = document.getElementById("tabla");
 
@@ -1702,9 +1704,10 @@ showData = function Mostrar() {
     dataSet = new Array();
     var i = 1;
 
-    let centroco = document.getElementById('centroco').value;
+    var centroco = document.getElementById('centroco').value;
     //901218738 - CONJ. RES. TERRITORIO AURORA
-    db.collection("RegistroInforme").where("CentroCostos", "==", centroco).orderBy("Fecha2", "desc").limit(5).get().then(function (querySnapshot) {
+    db.collection("RegistroInforme")
+    .where("CentroCostos", "==", centroco).orderBy("Fecha2", "desc").limit(5).get().then(function (querySnapshot) {
         tabl23.innerHTML = "";
         querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
@@ -1714,6 +1717,8 @@ showData = function Mostrar() {
               '',
               'success'
             )*/
+            console.log('el centro de costos es igual');
+
             let Fecha = `${doc.data().Fecha}`;
             let Nombre = `${doc.data().Nombre}`;
 
