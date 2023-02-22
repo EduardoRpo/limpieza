@@ -1707,7 +1707,7 @@ showData=function Mostrar() {
     var centroco = document.getElementById('centroco').value;
     //901218738 - CONJ. RES. TERRITORIO AURORA
     db.collection("RegistroInforme")
-    .where("CentroCostos", "==", centroco).orderBy("Fecha2", "desc").limit(5).get().then(function (querySnapshot) {
+    .where("CentroCostos", "==", centroco).orderBy("Fecha2", "desc").limit(10).get().then(function (querySnapshot) {
         tabl23.innerHTML = "";
         querySnapshot.forEach(function (doc) {
             // doc.data() is never undefined for query doc snapshots
