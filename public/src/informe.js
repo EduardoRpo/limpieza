@@ -1257,6 +1257,7 @@ function Registrar() {
                 cb11 = true;
             }
 
+            var observacionesArea=getElementById('observacionesArea').value;
             //--------------------firma--------------------
             ficheroF = document.getElementById('ficheroF');
 
@@ -1268,6 +1269,7 @@ function Registrar() {
 
             db.collection("RegistroInforme").add({
                 Numero: Number(numero),
+                observaciones:observacionesArea,
                 Id: registro,
                 Cb1: cb1,
                 Cb2: cb2,
