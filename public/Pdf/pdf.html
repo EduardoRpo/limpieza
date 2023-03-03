@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+    <script src="html2pdf.bundle.min.js"></script>
+    
+    <!--estilos personalidzados-->
+    <!--
+    <link href="pdf.css" rel="stylesheet">  -->
+    
+      <!--sweet alert-->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link REL=StyleSheet href="../estilo.css" type="text/css" media=screen>
+
+
+    <!--datables CSS básico-->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/dataTables.bootstrap5.min.css">
+
+    <!--firebase-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+
+    <!--font-awenson-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+
+
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!---->
+
+
+    <!--datatable buttons-->
+    <!--
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cnd.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+    -->
+</head>
+<body style='height: auto;'>
+
+    <div id="content">
+
+        
+    <input type="text" id="numberQuery"> <input type="button" value="Consultar" onclick=Consultar()>
+    <input type="button" value="comparar" onclick=Comparar()>
+    <div class="row" style='margin: 1%;'>
+        <div class="row">
+            <textarea name="" id="" cols="80" rows="2" disabled style='text-align : justify;'>LIMPIEZA & SOLUCIONES INTEGRADAS S.A.S
+                Nit: 900937794-6 PRESTACIÓN DEL SERVICIO</textarea>
+        </div>
+        <div class="col-8">
+            <label for="">Centro de Servicios: <textarea name="" id="centrocostos" cols="60" rows="1" disabled style='border:none;'></textarea> </label>
+        </div>
+        <div class="col-4">
+            <label for="">ÁREA: zonas comunes</label>
+        </div>
+    </div>
+    
+    <!--inicio card-->
+    <div class="card" style='margin: 1%;'>
+        <div class="card-header">
+            INFORMACIÓN GENERAL
+             
+        </div>
+        <div class="card-body">
+
+            <!--inicio tabla-->
+            <div class="table-responsive "
+        style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <table id="example" class="table table-bordered" style="width:100%; max-width: 100%;">
+            <thead>
+                <tr>
+                    <th>Zonas</th>
+                    <th >Valor</th>
+                    <th>Zonas</th>
+                    <th >Valor</th>
+               
+                </tr>
+            </thead>
+            <tbody id="tabla">
+                
+                <tr>
+                    <td style="width:30%;"><input type="text" value="---" style="border:none;" disabled id="andenes"></td>
+
+                    <td ><input type="text" id="estado1"  disabled > </td> 
+
+                    <td style="width:30%;"><input type="text" value="---" style="border:none;" disabled id="Implementos"></td>
+                    <td><input type="text" id="estado8" disabled></td>
+
+                    
+                </tr> 
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="calefacc"></input></td>
+                    <td><input type="text" id="estado2" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="Inyectores"></td>
+                    <td><input type="text" id="estado9" disabled></td>
+
+                  
+                </tr>
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="cerra"></input></td>
+                    <td><input type="text" id="estado3" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="lava"></td>  
+                    <td><input type="text" id="estado10" disabled></td>
+
+                    
+                </tr>
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="cuarto"></input></td>
+                    <td><input type="text" id="estado4" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="rejilla"></input></td>
+                    <td><input type="text" id="estado11" disabled></td>
+
+                   
+                </tr>
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="cuartQuimi"></td>
+                    <td><input type="text" id="estado5" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="rompe"></input></td>
+                    <td><input type="text" id="estado12" disabled></td>
+
+                   
+
+
+                </tr> 
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="desnatadores"></td>
+                    <td><input type="text" id="estado6" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="succiones"></input></td>
+                    <td><input type="text" id="estado13" disabled></td>
+
+                   
+
+
+                </tr> 
+
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="Duchas"></td>
+                    <td><input type="text" id="estado7" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="vaso"></input></td>
+                    <td><input type="text" id="estado14" disabled></td>
+
+                   
+
+
+                </tr>
+
+                
+              
+
+            </tbody>
+
+        </table>
+    </div>
+
+            <!--fin tabla-->
+          
+
+
+        </div>
+      </div>
+
+    <!--fin card-->
+
+     <!--inicio card2-->
+     <div class="card" style='margin: 1%;'>
+        <div class="card-header">
+            EVALUACIÓN DEL AUXILIAR OPERATIVO
+             
+        </div>
+        <label for="">Nombre Operario: <input type="text" id='nombreOperario' disabled style='border:none;'> </label> 
+        <div class="card-body">
+
+            <!--inicio tabla-->
+            <div class="table-responsive "
+        style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <table id="example" class="table table-bordered" style="width:100%; max-width: 100%;">
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Valor</th>
+                    <th>Concepto</th>
+                    <th>Valor</th>
+               
+                </tr>
+            </thead>
+            <tbody id="tabla">
+                
+                <tr>
+                    <td style="width:30%;"><input type="text" value="---" style="border:none;" disabled id="concep1"></td>
+
+                    <td><input type="text" id="estado01"  disabled> </td> 
+
+                    <td style="width:30%;"><input type="text" value="---" style="border:none;" disabled id="concep8"></td>
+                    <td><input type="text" id="estado08" disabled></td>
+
+                    
+                </tr> 
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep2"></input></td>
+                    <td><input type="text" id="estado02" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep9"></td>
+                    <td><input type="text" id="estado09" disabled></td>
+
+                  
+                </tr>
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep3"></input></td>
+                    <td><input type="text" id="estado03" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep10"></td>  
+                    <td><input type="text" id="estado010" disabled></td>
+
+                    
+                </tr>
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep4"></input></td>
+                    <td><input type="text" id="estado04" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep11"></input></td>
+                    <td><input type="text" id="estado011" disabled></td>
+
+                   
+                </tr>
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep5"></td>
+                    <td><input type="text" id="estado05" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep12"></input></td>
+                    <td><input type="text" id="estado012" disabled></td>
+
+                   
+
+
+                </tr> 
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep6"></td>
+                    <td><input type="text" id="estado06" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep13"></input></td>
+                    <td><input type="text" id="estado013" disabled></td>
+
+                   
+
+
+                </tr> 
+
+                <tr>
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep7"></td>
+                    <td><input type="text" id="estado07" disabled></td>
+
+                    <td><input type="text" value="---" style="border:none;" disabled id="concep14"></input></td>
+                    <td><input type="text" id="estado014" disabled></td>
+
+                   
+
+
+                </tr>
+
+                
+              
+
+            </tbody>
+
+        </table>
+    </div>
+
+            <!--fin tabla-->
+          
+
+
+        </div>
+      </div>
+
+    <!--fin card-->
+
+
+    <!--inicio card3-->
+    <div class="card" style='margin: 1%;'>
+        <div class="card-header">
+            IRREGULARIDADES, SUGERENCIAS Y/O INDICACIONES
+             
+        </div>
+        
+            <div class="card-body">
+
+                <textarea class="form-control" placeholder="" id="observacionesArea"></textarea>
+
+
+            </div>
+    </div>
+
+    <!--fin card-->
+
+
+     <!--inicio card4-->
+     <div class="card" style='margin: 1%;'>
+        <div class="card-header">
+            IMAGENES
+             
+        </div>
+        
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen1'>
+                        <input type="text" id='titulo1' disabled >
+
+                    </div>
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen2'>
+                         <input type="text" id='titulo2' disabled>
+
+                    </div>
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen3'>
+                         <input type="text" id='titulo3' disabled>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen4'>
+                        <input type="text" id='titulo4' disabled >
+
+                    </div>
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen5'>
+                         <input type="text" id='titulo5' disabled>
+
+                    </div>
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen6'>
+                         <input type="text" id='titulo6' disabled>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen7'>
+                        <input type="text" id='titulo7' disabled >
+
+                    </div>
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen8'>
+                         <input type="text" id='titulo8' disabled>
+
+                    </div>
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen9'>
+                         <input type="text" id='titulo9' disabled>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen10'>
+                        <input type="text" id='titulo10' disabled >
+
+                    </div>
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen11'>
+                         <input type="text" id='titulo11' disabled>
+
+                    </div>
+                    <div class="col">
+
+                        <img src="" class="img-thumbnail" alt="..." id='imagen12'>
+                         <input type="text" id='titulo12' disabled>
+
+                    </div>
+                </div>
+
+
+            </div>
+    </div>
+
+    <!--fin card-->
+
+
+
+
+
+
+
+        <div id="elementH"></div>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+
+
+    <script src="../plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+    <!-- datatables JS -->
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.11.0/js/dataTables.bootstrap5.min.js"></script>
+    <!--
+
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+
+    -->
+
+
+
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.2.0/js/buttons.html5.styles.templates.min.js"></script>
+    <!--
+    <script src="../plugins/momentjs/moment.min.js"></script>
+    -->
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+    
+    <script src="pdf.js"></script>
+</body>
+</html>
