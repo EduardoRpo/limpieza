@@ -253,7 +253,7 @@ subirImagenAfirebase = function () {
                     Nit: nit,
                     Fecha: fecha,
                     Zona1: zona,
-                    Numero: Number(numero),
+                    Id: numero,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -334,7 +334,7 @@ subirImagenAfirebase2 = function () {
                     Nit: nit,
                     Fecha: fecha,
                     Zona2: zona2,
-                    Numero: Number(numero),
+                    Id: numero,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -414,7 +414,7 @@ subirImagenAfirebase3 = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
-                    Numero: Number(numero),
+                    Id: numero,
                     Zona3: zona3
                 })
                     .then((docRef) => {
@@ -495,7 +495,7 @@ subirImagenAfirebase4 = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
-                    Numero: Number(numero),
+                    Id: numero,
                     Zona4: zona4
                 })
                     .then((docRef) => {
@@ -576,7 +576,7 @@ subirImagenAfirebase5 = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
-                    Numero: Number(numero),
+                    Id: numero,
                     Zona5: zona5
                 })
                     .then((docRef) => {
@@ -654,7 +654,7 @@ subirImagenAfirebase6 = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
-                    Numero: Number(numero),
+                    Id: numero,
                     Zona6: zona6
                 })
                     .then((docRef) => {
@@ -730,7 +730,7 @@ subirImagenAfirebase7 = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
-                    Numero: Number(numero),
+                    Id: numero,
                     Zona7: zona7,
                 })
                     .then((docRef) => {
@@ -808,7 +808,7 @@ subirImagenAfirebase8 = function () {
                     Nit: nit,
                     Fecha: fecha,
                     Zona8: zona8,
-                    Numero: Number(numero),
+                    Id: numero,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -885,7 +885,7 @@ subirImagenAfirebase9 = function () {
                     Nit: nit,
                     Fecha: fecha,
                     Zona9: zona9,
-                    Numero: Number(numero),
+                    Id: numero,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -962,7 +962,7 @@ subirImagenAfirebase10 = function () {
                     Nit: nit,
                     Fecha: fecha,
                     Zona10: zona10,
-                    Numero: Number(numero),
+                    Id: numero,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -1044,7 +1044,7 @@ subirImagenAfirebase11 = function () {
                     Nit: nit,
                     Fecha: fecha,
                     Zona11: zona11,
-                    Numero: Number(numero),
+                    Id: numero,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
@@ -1111,7 +1111,7 @@ subirImagenAfirebaseFirma = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
-                    Numero: Number(numero),
+                    //Id: numero,
                     //Zona1:zona
                 })
                     .then((docRef) => {
