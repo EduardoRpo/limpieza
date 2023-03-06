@@ -83,6 +83,7 @@ info2daParte=function () {
         concepto6 = `${doc.data().concepto6}`;
         concepto7 = `${doc.data().concepto7}`;
         concepto8 = `${doc.data().concepto8}`;
+        indicador = `${doc.data().Id}`;
 
         concepto9 = `${doc.data().concepto9}`;
         concepto10 = `${doc.data().concepto10}`;
@@ -174,7 +175,7 @@ info2daParte=function () {
           modificadoX = '';
         }*/
 
-        dataSet.push([Fecha,
+        dataSet.push([Fecha, indicador,
           Nombre,
           Nit, CentroCostos,promedio, concepto1, EstatusInforme1, concepto2, EstatusInforme2, concepto3, EstatusInforme3, concepto4, EstatusInforme4, concepto5, EstatusInforme5, concepto6, EstatusInforme6, concepto7, EstatusInforme7, concepto8, EstatusInforme8, concepto9, EstatusInforme9, concepto10, EstatusInforme10, concepto11, EstatusInforme11, concepto12, EstatusInforme12]);
         //console.log('usuario:' + usuario + '-' + 'modificado:' + modificadoX + '-' + 'fecha' + Fecha);
@@ -216,6 +217,7 @@ info2daParte=function () {
             columns: [
 
               { title: "Fecha" },
+              { title: "ID" },
               { title: "Nombre" },
               { title: "Nit" },
               { title: "Centro Costos" },
@@ -354,6 +356,7 @@ function consultarFechasInfo() {
 
         Zona9 = `${doc.data().Zona9}`;
         Zona10 = `${doc.data().Zona10}`;
+        indicador2 = `${doc.data().Id}`;
 
 
 
@@ -439,7 +442,7 @@ function consultarFechasInfo() {
           modificadoX = '';
         }*/
 
-        dataSet.push([Fecha,
+        dataSet.push([Fecha, indicador2,
           Nombre,
           Nit, CentroCostos,promedio, Zona1, Estado1, Zona2, Estado2, Zona3, Estado3, Zona4, Estado4, Zona5, Estado5, Zona6, Estado6, Zona7, Estado7, Zona8, Estado8, Zona9, Estado9, Zona10, Estado10, Zona11, Estado11]);
         //console.log('usuario:' + usuario + '-' + 'modificado:' + modificadoX + '-' + 'fecha' + Fecha);
@@ -481,6 +484,7 @@ function consultarFechasInfo() {
             columns: [
 
               { title: "Fecha" },
+              { title: "ID" },
               { title: "Nombre" },
               { title: "Nit" },
               { title: "Centro Costos" },
