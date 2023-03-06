@@ -244,6 +244,7 @@ subirImagenAfirebase = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona = document.getElementById('zona1').value;
+                var numero = document.getElementById('caso').value;
 
 
                 db.collection("ImagenesInforme").add({
@@ -251,12 +252,13 @@ subirImagenAfirebase = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
-                    Zona1: zona
+                    Zona1: zona,
+                    Numero: Number(numero),
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+Numero,
                             '',
                             'success'
                         )
@@ -323,6 +325,7 @@ subirImagenAfirebase2 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona2 = document.getElementById('zona2').value;
+                var numero = document.getElementById('caso').value;
 
 
                 db.collection("ImagenesInforme").add({
@@ -330,12 +333,13 @@ subirImagenAfirebase2 = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
-                    Zona2: zona2
+                    Zona2: zona2,
+                    Numero: Number(numero),
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+Numero,
                             '',
                             'success'
                         )
@@ -402,6 +406,7 @@ subirImagenAfirebase3 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona3 = document.getElementById('zona3').value;
+                var numero = document.getElementById('caso').value;
 
 
                 db.collection("ImagenesInforme").add({
@@ -409,12 +414,13 @@ subirImagenAfirebase3 = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
+                    Numero: Number(numero),
                     Zona3: zona3
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+ Numero,
                             '',
                             'success'
                         )
@@ -481,6 +487,7 @@ subirImagenAfirebase4 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona4 = document.getElementById('zona4').value;
+                var numero = document.getElementById('caso').value;
 
 
                 db.collection("ImagenesInforme").add({
@@ -488,12 +495,13 @@ subirImagenAfirebase4 = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
+                    Numero: Number(numero),
                     Zona4: zona4
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+Numero,
                             '',
                             'success'
                         )
@@ -560,6 +568,7 @@ subirImagenAfirebase5 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona5 = document.getElementById('zona5').value;
+                var numero = document.getElementById('caso').value;
 
 
                 db.collection("ImagenesInforme").add({
@@ -567,12 +576,13 @@ subirImagenAfirebase5 = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
+                    Numero: Number(numero),
                     Zona5: zona5
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+Numero,
                             '',
                             'success'
                         )
@@ -636,6 +646,7 @@ subirImagenAfirebase6 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona6 = document.getElementById('zona6').value;
+                var numero = document.getElementById('caso').value;
 
 
                 db.collection("ImagenesInforme").add({
@@ -643,12 +654,13 @@ subirImagenAfirebase6 = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
+                    Numero: Number(numero),
                     Zona6: zona6
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+Numero,
                             '',
                             'success'
                         )
@@ -711,18 +723,20 @@ subirImagenAfirebase7 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona7 = document.getElementById('zona7').value;
+                var numero = document.getElementById('caso').value;
 
                 db.collection("ImagenesInforme").add({
                     Url7: downloadURL7,
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
+                    Numero: Number(numero),
                     Zona7: zona7,
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+Numero,
                             '',
                             'success'
                         )
@@ -786,6 +800,7 @@ subirImagenAfirebase8 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona8 = document.getElementById('zona8').value;
+                var numero = document.getElementById('caso').value;
 
                 db.collection("ImagenesInforme").add({
                     Url8: downloadURL8,
@@ -793,11 +808,12 @@ subirImagenAfirebase8 = function () {
                     Nit: nit,
                     Fecha: fecha,
                     Zona8: zona8,
+                    Numero: Number(numero),
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+Numero,
                             '',
                             'success'
                         )
@@ -861,6 +877,7 @@ subirImagenAfirebase9 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona9 = document.getElementById('zona9').value;
+                var numero = document.getElementById('caso').value;
 
                 db.collection("ImagenesInforme").add({
                     Url9: downloadURL9,
@@ -868,11 +885,12 @@ subirImagenAfirebase9 = function () {
                     Nit: nit,
                     Fecha: fecha,
                     Zona9: zona9,
+                    Numero: Number(numero),
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+Numero,
                             '',
                             'success'
                         )
@@ -936,6 +954,7 @@ subirImagenAfirebase10 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona10 = document.getElementById('zona10').value;
+                var numero = document.getElementById('caso').value;
 
                 db.collection("ImagenesInforme").add({
                     Url10: downloadURL10,
@@ -943,11 +962,12 @@ subirImagenAfirebase10 = function () {
                     Nit: nit,
                     Fecha: fecha,
                     Zona10: zona10,
+                    Numero: Number(numero),
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+Numero,
                             '',
                             'success'
                         )
@@ -1015,6 +1035,8 @@ subirImagenAfirebase11 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona11 = document.getElementById('zona11').value;
+                
+                var numero = document.getElementById('caso').value;
 
                 db.collection("ImagenesInforme").add({
                     Url11: downloadURL11,
@@ -1022,11 +1044,12 @@ subirImagenAfirebase11 = function () {
                     Nit: nit,
                     Fecha: fecha,
                     Zona11: zona11,
+                    Numero: Number(numero),
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' + 'N° :'+Numero,
                             '',
                             'success'
                         )
@@ -1080,6 +1103,7 @@ subirImagenAfirebaseFirma = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 //var zona = document.getElementById('zona1').value;
+                var numero = document.getElementById('caso').value;
 
 
                 db.collection("ImagenesFirmasInfor").add({
@@ -1087,12 +1111,13 @@ subirImagenAfirebaseFirma = function () {
                     Documento: documento,
                     Nit: nit,
                     Fecha: fecha,
+                    Numero: Number(numero),
                     //Zona1:zona
                 })
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!',
+                            'Registro Exitoso!!!' ,
                             '',
                             'success'
                         )
