@@ -1164,7 +1164,7 @@ function Registrar() {
         if (confirm("Seguro que desea continuar con el registro?")) {
 
             // inicializo variable checkbox
-
+            alert('cero alert')
             let cb1 = false;
             let cb2 = false;
             let cb3 = false;
@@ -1176,6 +1176,8 @@ function Registrar() {
             let cb9 = false;
             let cb10 = false;
             let cb11 = false;
+
+            alert('primer alert')
 
 
             var documento = document.getElementById('documento').value;
@@ -1217,6 +1219,9 @@ function Registrar() {
             var zon11 = document.getElementById('zona11').value;
             var estado11 = document.getElementById('estado11').value;
 
+            alert('segundo alert')
+
+
             //------------segundo informe-------------------------
             var concepto1 = document.getElementById('concep1').value;
             var estatus1 = document.getElementById('estad1').value;
@@ -1245,6 +1250,9 @@ function Registrar() {
 
             var fechaLarge = new Date();
             var ingreso = document.getElementById('mailUser').value;
+
+            alert('tercer alert')
+
 
             var divisiones = String(centrocos.split(" ", 1));
 
@@ -1282,6 +1290,9 @@ function Registrar() {
                 cb11 = true;
             }
 
+            alert('cuarto alert')
+
+
             var observacionesArea=getElementById('observacionesArea').value;
             //--------------------firma--------------------
             ficheroF = document.getElementById('ficheroF');
@@ -1291,6 +1302,7 @@ function Registrar() {
             //---------------------------------------------
             numero = caso;
             let registro = document.getElementById('caso').value;
+            alert('quinto alert')
 
             db.collection("RegistroInforme").add({
                 Numero: Number(numero),
@@ -1381,6 +1393,7 @@ function Registrar() {
             setInterval("location.reload()", 3000)
                 .catch((error) => {
                     console.error("Error adding document: ", error);
+                   
                 });
 
 
@@ -2156,12 +2169,12 @@ function Consultar() {
 
 }
 
-
+/*
 function Actualizar() {
     if (document.getElementById('mailUser').value != '') {
 
 
-        if (confirm("Seguro que desea continuar con el registro?")) {
+        if (confirm("Seguro que desea continuar con el registro Actualizacion2?")) {
             actuali();
         }
         else {
@@ -2180,11 +2193,7 @@ function Actualizar() {
 
 
     }
-    //----------------------------------------------
-    /*if (confirm("Seguro que desea actualizar el registro?")) {
-        actuali();
-    } else {
+    
 
-    }*/
+}*/
 
-}
