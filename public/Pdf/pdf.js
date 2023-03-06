@@ -15,8 +15,43 @@ var auth = firebase.auth();
 
 
 
+//var btn = document.getElementById("btn");
+ createpdf = document.getElementById("content2");
+ opt = {
+   margin: 1,
+   filename: 'pdfcreated.pdf',
+   image: {
+    type: 'jpeg',
+    quality: 0.98
+},
+   html2canvas: {
+      scale: 2,
+      letterRendering: true,
+   },
+   jsPDF: {
+      unit: 'in',
+      format: 'letter',
+      //orientation: 'portrait'
+      orientation:'landscape'
+   }
+};
 
 function Comparar() {
+
+    /*var doc = new jsPDF();
+
+    var htmlContent = document.getElementById('content2').innerHTML;
+    doc.fromHTML(htmlContent, {
+        callback: function () {
+            doc.save('Informe.pdf');
+        }
+    });*/
+
+
+    //btn.addEventListener("click", function() {
+       //html2pdf().set(opt).from(createpdf).save();   here
+    //});
+
     /*var $elementoParaConvertir = document.body;
     html2pdf().set({
         margin: 1,
@@ -38,9 +73,24 @@ function Comparar() {
     })
     .from($elementoParaConvertir).save().catch(err => console.log(err)); */
 
-    event.preventDefault();
+    //event.preventDefault();
     //boton.style.display = "none";
+    if (window.screen.orientation.type == "portrait-primary") {
+        window.document.body.style.transform = "landscape";
+      }
+      window.document.body.style.width = "8.5in";
+      window.document.body.style.height = "11in";
+    //var encabezado = "<h1>Informe de Supervisión</h1>";
+    //var piePagina = "<p>Limpieza & Soluciones Integradas S.A.S</p>";
+    //window.document.write(encabezado);
+    document.getElementById('numberQuery').style.display='none';
+    document.getElementById('btn').style.display='none';
+    document.getElementById('btnConsultar').style.display='none';
     window.print();
+    //window.document.write(piePagina);
+    //window.print();
+
+    
 
 }
 
