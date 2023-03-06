@@ -258,7 +258,7 @@ subirImagenAfirebase = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+Numero,
+                            'Registro Exitoso!!!' + 'N° :'+numero,
                             '',
                             'success'
                         )
@@ -339,7 +339,7 @@ subirImagenAfirebase2 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+Numero,
+                            'Registro Exitoso!!!' + 'N° :'+numero,
                             '',
                             'success'
                         )
@@ -420,7 +420,7 @@ subirImagenAfirebase3 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+ Numero,
+                            'Registro Exitoso!!!' + 'N° :'+ numero,
                             '',
                             'success'
                         )
@@ -501,7 +501,7 @@ subirImagenAfirebase4 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+Numero,
+                            'Registro Exitoso!!!' + 'N° :'+numero,
                             '',
                             'success'
                         )
@@ -582,7 +582,7 @@ subirImagenAfirebase5 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+Numero,
+                            'Registro Exitoso!!!' + 'N° :'+numero,
                             '',
                             'success'
                         )
@@ -660,7 +660,7 @@ subirImagenAfirebase6 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+Numero,
+                            'Registro Exitoso!!!' + 'N° :'+numero,
                             '',
                             'success'
                         )
@@ -736,7 +736,7 @@ subirImagenAfirebase7 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+Numero,
+                            'Registro Exitoso!!!' + 'N° :'+numero,
                             '',
                             'success'
                         )
@@ -813,7 +813,7 @@ subirImagenAfirebase8 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+Numero,
+                            'Registro Exitoso!!!' + 'N° :'+numero,
                             '',
                             'success'
                         )
@@ -890,7 +890,7 @@ subirImagenAfirebase9 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+Numero,
+                            'Registro Exitoso!!!' + 'N° :'+numero,
                             '',
                             'success'
                         )
@@ -967,7 +967,7 @@ subirImagenAfirebase10 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+Numero,
+                            'Registro Exitoso!!!' + 'N° :'+numero,
                             '',
                             'success'
                         )
@@ -1049,7 +1049,7 @@ subirImagenAfirebase11 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + 'N° :'+Numero,
+                            'Registro Exitoso!!!' + 'N° :'+numero,
                             '',
                             'success'
                         )
