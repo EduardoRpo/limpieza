@@ -1164,7 +1164,7 @@ function Registrar() {
         if (confirm("Seguro que desea continuar con el registro?")) {
 
             // inicializo variable checkbox
-            alert('cero alert')
+            //alert('cero alert')
             let cb1 = false;
             let cb2 = false;
             let cb3 = false;
@@ -1177,7 +1177,7 @@ function Registrar() {
             let cb10 = false;
             let cb11 = false;
 
-            alert('primer alert')
+            //alert('primer alert')
 
 
             var documento = document.getElementById('documento').value;
@@ -1219,7 +1219,7 @@ function Registrar() {
             var zon11 = document.getElementById('zona11').value;
             var estado11 = document.getElementById('estado11').value;
 
-            alert('segundo alert')
+            //alert('segundo alert')
 
 
             //------------segundo informe-------------------------
@@ -1251,7 +1251,7 @@ function Registrar() {
             var fechaLarge = new Date();
             var ingreso = document.getElementById('mailUser').value;
 
-            alert('tercer alert')
+            //alert('tercer alert')
 
 
             var divisiones = String(centrocos.split(" ", 1));
@@ -1290,11 +1290,13 @@ function Registrar() {
                 cb11 = true;
             }
 
-            alert('cuarto alert')
+            //alert('cuarto alert')
 
 
-            var observacionesArea=getElementById('observacionesArea').value;
+            var observacionesArea=document.getElementById('observacionesArea').value;
             //--------------------firma--------------------
+            //alert('quinto alert');
+
             ficheroF = document.getElementById('ficheroF');
 
             //fichero.addEventListener('onclick', subirImagenAfirebase, false);
@@ -1302,7 +1304,7 @@ function Registrar() {
             //---------------------------------------------
             numero = caso;
             let registro = document.getElementById('caso').value;
-            alert('quinto alert')
+            
 
             db.collection("RegistroInforme").add({
                 Numero: Number(numero),
