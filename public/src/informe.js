@@ -258,7 +258,7 @@ subirImagenAfirebase = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -339,7 +339,7 @@ subirImagenAfirebase2 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -420,7 +420,7 @@ subirImagenAfirebase3 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+ numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -501,7 +501,7 @@ subirImagenAfirebase4 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -582,7 +582,7 @@ subirImagenAfirebase5 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -660,7 +660,7 @@ subirImagenAfirebase6 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -736,7 +736,7 @@ subirImagenAfirebase7 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -813,7 +813,7 @@ subirImagenAfirebase8 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -890,7 +890,7 @@ subirImagenAfirebase9 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -967,7 +967,7 @@ subirImagenAfirebase10 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -1035,7 +1035,7 @@ subirImagenAfirebase11 = function () {
                 var nit = document.getElementById('nit').value;
                 var fecha = document.getElementById('fecha').value;
                 var zona11 = document.getElementById('zona11').value;
-                
+
                 var numero = document.getElementById('caso').value;
 
                 db.collection("ImagenesInforme").add({
@@ -1049,7 +1049,7 @@ subirImagenAfirebase11 = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' + '  N° :'+numero,
+                            'Registro Exitoso!!!' + '  N° :' + numero,
                             '',
                             'success'
                         )
@@ -1117,7 +1117,7 @@ subirImagenAfirebaseFirma = function () {
                     .then((docRef) => {
                         console.log("Document written with ID imagen: ", docRef.id);
                         Swal.fire(
-                            'Registro Exitoso!!!' ,
+                            'Registro Exitoso!!!',
                             '',
                             'success'
                         )
@@ -1293,7 +1293,7 @@ function Registrar() {
             //alert('cuarto alert')
 
 
-            var observacionesArea=document.getElementById('observacionesArea').value;
+            var observacionesArea = document.getElementById('observacionesArea').value;
             //--------------------firma--------------------
             //alert('quinto alert');
 
@@ -1304,11 +1304,11 @@ function Registrar() {
             //---------------------------------------------
             numero = caso;
             let registro = document.getElementById('caso').value;
-            
+
 
             db.collection("RegistroInforme").add({
                 Numero: Number(numero),
-                observaciones:observacionesArea,
+                observaciones: observacionesArea,
                 Id: registro,
                 Cb1: cb1,
                 Cb2: cb2,
@@ -1392,10 +1392,12 @@ function Registrar() {
                 'Ha completado el registro del formato..',
                 'success'
             )
+            setTimeout(Duplicar, 1000);
+            setTimeout(Comparar, 2000);
             setInterval("location.reload()", 3000)
                 .catch((error) => {
                     console.error("Error adding document: ", error);
-                   
+
                 });
 
 
@@ -1426,7 +1428,7 @@ function Documento(val) {
     //tabl = document.getElementById("resul11");
     //showData();
     //Mostrar();
-    
+
 
     db.collection("Empleados").where("Cedula", "==", val2)
         .get()
@@ -1460,7 +1462,7 @@ function Documento(val) {
                   </tr>
                   `*/
 
-                  showData();
+                showData();
 
             });
         })
@@ -1738,7 +1740,7 @@ descargar = function convertCanvasToImgElement() {
 }
 
 
-showData=function Mostrar() {
+showData = function Mostrar() {
 
     var tabl23 = document.getElementById("tabla");
 
@@ -1749,196 +1751,196 @@ showData=function Mostrar() {
     var centroco = document.getElementById('centroco').value;
     //901218738 - CONJ. RES. TERRITORIO AURORA
     db.collection("RegistroInforme")
-    .where("CentroCostos", "==", centroco).orderBy("Fecha2", "desc").limit(10).get().then(function (querySnapshot) {
-        tabl23.innerHTML = "";
-        querySnapshot.forEach(function (doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            /*Swal.fire(
-              'Consulta exitosa!!!',
-              '',
-              'success'
-            )*/
-            console.log('el centro de costos es igual');
+        .where("CentroCostos", "==", centroco).orderBy("Fecha2", "desc").limit(10).get().then(function (querySnapshot) {
+            tabl23.innerHTML = "";
+            querySnapshot.forEach(function (doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+                /*Swal.fire(
+                  'Consulta exitosa!!!',
+                  '',
+                  'success'
+                )*/
+                console.log('el centro de costos es igual');
 
-            let Fecha = `${doc.data().Fecha}`;
-            let Nombre = `${doc.data().Nombre}`;
+                let Fecha = `${doc.data().Fecha}`;
+                let Nombre = `${doc.data().Nombre}`;
 
-            let Estado1 = `${doc.data().Estado1}`;
-            let Estado2 = `${doc.data().Estado2}`;
-            let Estado3 = `${doc.data().Estado3}`;
-            let Estado4 = `${doc.data().Estado4}`;
-            let Estado5 = `${doc.data().Estado5}`;
-            let Estado6 = `${doc.data().Estado6}`;
-            let Estado7 = `${doc.data().Estado7}`;
-            let Estado8 = `${doc.data().Estado8}`;
-            let Estado9 = `${doc.data().Estado9}`;
-            let Estado10 = `${doc.data().Estado10}`;
-            let Estado11 = `${doc.data().Estado11}`;
+                let Estado1 = `${doc.data().Estado1}`;
+                let Estado2 = `${doc.data().Estado2}`;
+                let Estado3 = `${doc.data().Estado3}`;
+                let Estado4 = `${doc.data().Estado4}`;
+                let Estado5 = `${doc.data().Estado5}`;
+                let Estado6 = `${doc.data().Estado6}`;
+                let Estado7 = `${doc.data().Estado7}`;
+                let Estado8 = `${doc.data().Estado8}`;
+                let Estado9 = `${doc.data().Estado9}`;
+                let Estado10 = `${doc.data().Estado10}`;
+                let Estado11 = `${doc.data().Estado11}`;
 
-            let Zona1 = `${doc.data().Zona1}`;
-            let Zona2 = `${doc.data().Zona2}`;
-            let Zona3 = `${doc.data().Zona3}`;
-            let Zona4 = `${doc.data().Zona4}`;
-            let Zona5 = `${doc.data().Zona5}`;
-            let Zona6 = `${doc.data().Zona6}`;
-            let Zona7 = `${doc.data().Zona7}`;
-            let Zona8 = `${doc.data().Zona8}`;
-            let Zona9 = `${doc.data().Zona9}`;
-            let Zona10 = `${doc.data().Zona10}`;
-            let Zona11 = `${doc.data().Zona11}`;
+                let Zona1 = `${doc.data().Zona1}`;
+                let Zona2 = `${doc.data().Zona2}`;
+                let Zona3 = `${doc.data().Zona3}`;
+                let Zona4 = `${doc.data().Zona4}`;
+                let Zona5 = `${doc.data().Zona5}`;
+                let Zona6 = `${doc.data().Zona6}`;
+                let Zona7 = `${doc.data().Zona7}`;
+                let Zona8 = `${doc.data().Zona8}`;
+                let Zona9 = `${doc.data().Zona9}`;
+                let Zona10 = `${doc.data().Zona10}`;
+                let Zona11 = `${doc.data().Zona11}`;
 
-            let Registra = `${doc.data().Registra}`;
-            let id = `${doc.data().Id}`;
-            let showZone1 = '';
-            let showZone2 = '';
-            let showZone3 = '';
-            let showZone4 = '';
-            let showZone5 = '';
-            let showZone6 = '';
-            let showZone7 = '';
-            let showZone8 = '';
-            let showZone9 = '';
-            let showZone10 = '';
-            let showZone11 = '';
+                let Registra = `${doc.data().Registra}`;
+                let id = `${doc.data().Id}`;
+                let showZone1 = '';
+                let showZone2 = '';
+                let showZone3 = '';
+                let showZone4 = '';
+                let showZone5 = '';
+                let showZone6 = '';
+                let showZone7 = '';
+                let showZone8 = '';
+                let showZone9 = '';
+                let showZone10 = '';
+                let showZone11 = '';
 
-            let showQua1 = '';
-            let showQua2 = '';
-            let showQua3 = '';
-            let showQua4 = '';
-            let showQua5 = '';
-            let showQua6 = '';
-            let showQua7 = '';
-            let showQua8 = '';
-            let showQua9 = '';
-            let showQua10 = '';
-            let showQua11 = '';
-
-
-            if (Estado1 <= '3') {
-                showZone1 = Zona1+'=';
-                showQua1 = Estado1+',';
-            }
-            if (Estado2 <= '3') {
-                showZone2 = Zona2+'=';
-                showQua2 = Estado2+',';
-            }
-            if (Estado3 <= '3') {
-                showZone3 = Zona3+'=';
-                showQua3 = Estado3+',';
-            }
-            if (Estado4 <= '3') {
-                showZone4 = Zona4+'=';
-                showQua4 = Estado4+',';
-            }
-            if (Estado5 <= '3') {
-                showZone5 = Zona5+'=';
-                showQua5 = Estado5+',';
-            }
-            if (Estado6 <= '3') {
-                showZone6 = Zona6+'=';
-                showQua6 = Estado6+',';
-            }
-            if (Estado7 <= '3') {
-                showZone7 = Zona7+'=';
-                showQua7 = Estado7+',';
-            }
-            if (Estado8 <= '3') {
-                showZone8 = Zona8+'=';
-                showQua8 = Estado8+',';
-            }
-            if (Estado9 <= '3') {
-                showZone9 = Zona9+'=';
-                showQua9 = Estado9+',';
-            }
-            if (Estado10 <= '3') {
-                showZone10 = Zona10+'=';
-                showQua10 = Estado10+',';
-            }
-            if (Estado11 <= '3') {
-                showZone11 = Zona11+'=';
-                showQua11 = Estado11+',';
-            } 
-
-            let zonasShow = showZone1 + showQua1   + showZone2 + showQua2 + showZone3  + showQua3 + showZone4  + showQua4  + showZone5  + showQua5  + showZone6  + showQua6  + showZone7 + showQua7  + showZone8  + showQua8  + showZone9 + showQua9  + showZone10  + showQua10  + showZone11 + showQua11 ; 
+                let showQua1 = '';
+                let showQua2 = '';
+                let showQua3 = '';
+                let showQua4 = '';
+                let showQua5 = '';
+                let showQua6 = '';
+                let showQua7 = '';
+                let showQua8 = '';
+                let showQua9 = '';
+                let showQua10 = '';
+                let showQua11 = '';
 
 
+                if (Estado1 <= '3') {
+                    showZone1 = Zona1 + '=';
+                    showQua1 = Estado1 + ',';
+                }
+                if (Estado2 <= '3') {
+                    showZone2 = Zona2 + '=';
+                    showQua2 = Estado2 + ',';
+                }
+                if (Estado3 <= '3') {
+                    showZone3 = Zona3 + '=';
+                    showQua3 = Estado3 + ',';
+                }
+                if (Estado4 <= '3') {
+                    showZone4 = Zona4 + '=';
+                    showQua4 = Estado4 + ',';
+                }
+                if (Estado5 <= '3') {
+                    showZone5 = Zona5 + '=';
+                    showQua5 = Estado5 + ',';
+                }
+                if (Estado6 <= '3') {
+                    showZone6 = Zona6 + '=';
+                    showQua6 = Estado6 + ',';
+                }
+                if (Estado7 <= '3') {
+                    showZone7 = Zona7 + '=';
+                    showQua7 = Estado7 + ',';
+                }
+                if (Estado8 <= '3') {
+                    showZone8 = Zona8 + '=';
+                    showQua8 = Estado8 + ',';
+                }
+                if (Estado9 <= '3') {
+                    showZone9 = Zona9 + '=';
+                    showQua9 = Estado9 + ',';
+                }
+                if (Estado10 <= '3') {
+                    showZone10 = Zona10 + '=';
+                    showQua10 = Estado10 + ',';
+                }
+                if (Estado11 <= '3') {
+                    showZone11 = Zona11 + '=';
+                    showQua11 = Estado11 + ',';
+                }
 
-
-            dataSet.push([Fecha, zonasShow, Nombre, Registra]);
-            //console.log('usuario:' + usuario + '-' + 'modificado:' + modificadoX + '-' + 'fecha' + Fecha);
-
-            i = i + 1;
-
-
-            $(document).ready(function () {
-                var tablaSuma = $('#example').DataTable({
-
-                    dom: "Bfrtip",
-                    pageLength: 50,
-                    resposive: true,
+                let zonasShow = showZone1 + showQua1 + showZone2 + showQua2 + showZone3 + showQua3 + showZone4 + showQua4 + showZone5 + showQua5 + showZone6 + showQua6 + showZone7 + showQua7 + showZone8 + showQua8 + showZone9 + showQua9 + showZone10 + showQua10 + showZone11 + showQua11;
 
 
 
 
+                dataSet.push([Fecha, zonasShow, Nombre, Registra]);
+                //console.log('usuario:' + usuario + '-' + 'modificado:' + modificadoX + '-' + 'fecha' + Fecha);
+
+                i = i + 1;
 
 
-                    data: dataSet,
-                    "bDestroy": true,
-                    columnDefs: [{
-                        "defaultContent": "",
-                        "targets": "_all"
-                    }],
-                    columns: [
-                        { title: "Fecha" },
-                        { title: "Area" },
-                        { title: "Nombre" },
-                        { title: "Registra" },
+                $(document).ready(function () {
+                    var tablaSuma = $('#example').DataTable({
+
+                        dom: "Bfrtip",
+                        pageLength: 50,
+                        resposive: true,
 
 
 
-                    ],
 
 
-                    //para cambiar el lenguaje a español
-                    "language": {
-                        "lengthMenu": "Mostrar _MENU_ registros",
-                        "zeroRecords": "No se encontraron resultados",
-                        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                        "sSearch": "Buscar:",
-                        "oPaginate": {
-                            "sFirst": "Primero",
-                            "sLast": "Último",
-                            "sNext": "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
 
-                        "sProcessing": "Procesando...",
+                        data: dataSet,
+                        "bDestroy": true,
+                        columnDefs: [{
+                            "defaultContent": "",
+                            "targets": "_all"
+                        }],
+                        columns: [
+                            { title: "Fecha" },
+                            { title: "Area" },
+                            { title: "Nombre" },
+                            { title: "Registra" },
 
-                    }
+
+
+                        ],
+
+
+                        //para cambiar el lenguaje a español
+                        "language": {
+                            "lengthMenu": "Mostrar _MENU_ registros",
+                            "zeroRecords": "No se encontraron resultados",
+                            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "sSearch": "Buscar:",
+                            "oPaginate": {
+                                "sFirst": "Primero",
+                                "sLast": "Último",
+                                "sNext": "Siguiente",
+                                "sPrevious": "Anterior"
+                            },
+
+                            "sProcessing": "Procesando...",
+
+                        }
+
+                    });
+
 
                 });
+                //info2daParte();
+
+
+
+
 
 
             });
-            //info2daParte();
 
+            /*Swal.fire(
+              'Consulta exitosa!!',
+              'Se puede demorar unos segundos...',
+              'success'
+            ) */
 
-
-
-
-
-        });
-
-        /*Swal.fire(
-          'Consulta exitosa!!',
-          'Se puede demorar unos segundos...',
-          'success'
-        ) */
-
-    })
+        })
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
@@ -2171,6 +2173,12 @@ function Consultar() {
 
 }
 
+
+function Duplicar() {
+    Pdf();
+
+}
+
 /*
 function Actualizar() {
     if (document.getElementById('mailUser').value != '') {
@@ -2198,4 +2206,477 @@ function Actualizar() {
     
 
 }*/
+
+Pdf = function () {
+
+    var documento = document.getElementById('documento').value;
+    var nombre = document.getElementById('nombre').value;
+    var nit = document.getElementById('nit').value;
+    var centrocos = document.getElementById('centroco').value;
+    var fecha = document.getElementById('fecha').value;
+
+    var zon1 = document.getElementById('zona1').value;
+    Estado1 = Number(document.getElementById('estado1').value);
+
+    console.log(Estado1)
+
+    var zon2 = document.getElementById('zona2').value;
+    var estado2 = document.getElementById('estado2').value;
+
+    var zon3 = document.getElementById('zona3').value;
+    var estado3 = document.getElementById('estado3').value;
+
+    var zon4 = document.getElementById('zona4').value;
+    var estado4 = document.getElementById('estado4').value;
+
+    var zon5 = document.getElementById('zona5').value;
+    var estado5 = document.getElementById('estado5').value;
+
+    var zon6 = document.getElementById('zona6').value;
+    var estado6 = document.getElementById('estado6').value;
+
+    var zon7 = document.getElementById('zona7').value;
+    var estado7 = document.getElementById('estado7').value;
+
+    var zon8 = document.getElementById('zona8').value;
+    var estado8 = document.getElementById('estado8').value;
+
+    var zon9 = document.getElementById('zona9').value;
+    var estado9 = document.getElementById('estado9').value;
+
+    var zon10 = document.getElementById('zona10').value;
+    var estado10 = document.getElementById('estado10').value;
+
+    var zon11 = document.getElementById('zona11').value;
+    var estado11 = document.getElementById('estado11').value;
+
+    //alert('segundo alert')
+
+
+    //------------segundo informe-------------------------
+    var concepto1 = document.getElementById('concep1').value;
+    var estatus1 = document.getElementById('estad1').value;
+    var concepto2 = document.getElementById('concep2').value;
+    var estatus2 = document.getElementById('estad2').value;
+    var concepto3 = document.getElementById('concep3').value;
+    var estatus3 = document.getElementById('estad3').value;
+    var concepto4 = document.getElementById('concep4').value;
+    var estatus4 = document.getElementById('estad4').value;
+    var concepto5 = document.getElementById('concep5').value;
+    var estatus5 = document.getElementById('estad5').value;
+    var concepto6 = document.getElementById('concep6').value;
+    var estatus6 = document.getElementById('estad6').value;
+    var concepto7 = document.getElementById('concep7').value;
+    var estatus7 = document.getElementById('estad7').value;
+    var concepto8 = document.getElementById('concep8').value;
+    var estatus8 = document.getElementById('estad8').value;
+    var concepto9 = document.getElementById('concep9').value;
+    var estatus9 = document.getElementById('estad9').value;
+    var concepto10 = document.getElementById('concep10').value;
+    var estatus10 = document.getElementById('estad10').value;
+    var concepto11 = document.getElementById('concep11').value;
+    var estatus11 = document.getElementById('estad11').value;
+    var concepto12 = document.getElementById('concep12').value;
+    var estatus12 = document.getElementById('estad12').value;
+
+    var fechaLarge = new Date();
+    var ingreso = document.getElementById('mailUser').value;
+
+
+    var observacionesArea = document.getElementById('observacionesArea').value;
+
+    let registro = document.getElementById('caso').value;
+
+
+    document.getElementById('nombreOperario').value = nombre;
+    document.getElementById('centrocostos').value = centrocos;
+
+    document.getElementById('andenes').value = zon1;
+    document.getElementById('calefacc').value = zon2;
+    document.getElementById('cerra').value = zon3;
+    document.getElementById('cuarto').value = zon4;
+    document.getElementById('cuartQuimi').value = zon5;
+    document.getElementById('desnatadores').value = zon6;
+    document.getElementById('Duchas').value = zon7;
+    document.getElementById('Implementos').value = zon8;
+    document.getElementById('Inyectores').value = zon9;
+    document.getElementById('lava').value = zon10;
+    document.getElementById('rejilla').value = zon11;
+    //document.getElementById('rompe').value=zon12;
+    //document.getElementById('succiones').value=zon13;
+    //document.getElementById('vaso').value=zon14;
+    document.getElementById('estado123').value = Estado1;
+    document.getElementById('estado223').value = estado2;
+    document.getElementById('estado323').value = estado3;
+    document.getElementById('estado423').value = estado4;
+    document.getElementById('estado523').value = estado5;
+    document.getElementById('estado623').value = estado6;
+    document.getElementById('estado723').value = estado7;
+    document.getElementById('estado823').value = estado8;
+
+    document.getElementById('estado923').value = estado9;
+    document.getElementById('estado1023').value = estado10;
+    document.getElementById('estado1123').value = estado11;
+    document.getElementById('estado1223').value = estado12;
+    document.getElementById('estado1323').value = estado13;
+    document.getElementById('estado1423').value = estado14;
+
+
+
+
+
+}
+
+/*function previsualizarImagen1() {
+    const archivo = document.getElementById("fichero").files[0];
+    const lector = new FileReader();
+  
+    lector.onload = function (evento) {
+      const imagen = document.getElementById("imagen1");
+      imagen.src = evento.target.result;
+    };
+  
+    lector.readAsDataURL(archivo);
+  }*/
+
+
+function miFuncion() {
+    jerp = document.getElementById('content2');
+    const $elementoParaConvertir = jerp;
+    html2pdf()
+        .set({
+            margin: 1,
+            filename: "documento.pdf",
+            image: {
+                type: "jpeg",
+                quality: 0.98,
+            },
+            html2canvas: {
+                scale: 3, // A mayor escala, mejores gráficos, pero más peso
+                letterRendering: true,
+            },
+            jsPDF: {
+                unit: "in",
+                format: "a3",
+                orientation: "portrait", // landscape o portrait
+            },
+        })
+        .from($elementoParaConvertir)
+        .save()
+        .catch((err) => console.log(err));
+}
+
+
+function Comparar() {
+    
+    /*var doc = new jsPDF();
+  
+      var htmlContent = document.getElementById('content2').innerHTML;
+      doc.fromHTML(htmlContent, {
+          callback: function () {
+              doc.save('Informe.pdf');
+          }
+      });*/
+
+    //btn.addEventListener("click", function() {
+    //html2pdf().set(opt).from(createpdf).save();   here
+    //});
+
+    /*var $elementoParaConvertir = document.body;
+      html2pdf().set({
+          margin: 1,
+          filename: 'informe.pdf',
+          image: {
+              type: 'jpeg',
+              quality: 0.98
+          },
+          html2canvas: {
+              scale: 3,
+              letterRendering: true,
+  
+          },
+          jsPDF:{
+              unit: "in",
+              format: "a3",
+              orientation: "portrait"
+          }
+      })
+      .from($elementoParaConvertir).save().catch(err => console.log(err)); */
+
+    //event.preventDefault();
+    //boton.style.display = "none";
+    /*if (window.screen.orientation.type == "portrait-primary") {
+          window.document.body.style.transform = "landscape";
+        }
+        window.document.body.style.width = "8.5in";
+        window.document.body.style.height = "11in";*/
+    //var encabezado = "<h1>Informe de Supervisión</h1>";
+    //var piePagina = "<p>Limpieza & Soluciones Integradas S.A.S</p>";
+    //window.document.write(encabezado);
+    /*document.getElementById('numberQuery').style.display='none';
+      document.getElementById('btn').style.display='none';
+      document.getElementById('btnConsultar').style.display='none';
+      window.print();*/
+    //window.document.write(piePagina);
+    //window.print();
+    /*contenidoShow4=document.getElementById('content2');
+    const $elementoParaConvertir = document.body; // <-- Aquí puedes elegir cualquier elemento del DOM
+    html2pdf()
+      .set({
+        margin: 1,
+        filename: "documento.pdf",
+        image: {
+          type: "jpeg",
+          quality: 0.98,
+        },
+        html2canvas: {
+          scale: 3, // A mayor escala, mejores gráficos, pero más peso
+          letterRendering: true,
+        },
+        jsPDF: {
+          unit: "in",
+          format: "a3",
+          orientation: "portrait", // landscape o portrait
+        },
+      })
+      .from($elementoParaConvertir)
+      .save()
+      .catch((err) => console.log(err)); */
+
+    //function convertirABase64() {
+        if(document.getElementById('zona1').value!=''){
+            execu1();
+
+        }
+        if(document.getElementById('zona2').value!=''){
+            execu2();
+
+        }
+        if(document.getElementById('zona3').value!=''){
+            execu3();
+
+        }
+        if(document.getElementById('zona4').value!=''){
+            execu4();
+
+        }
+        if(document.getElementById('zona5').value!=''){
+            execu5();
+
+        }
+        if(document.getElementById('zona6').value!=''){
+            execu6();
+
+        }
+        if(document.getElementById('zona7').value!=''){
+            execu7();
+
+        }
+        if(document.getElementById('zona8').value!=''){
+            execu8();
+
+        }
+        if(document.getElementById('zona9').value!=''){
+            execu9();
+
+        }
+        if(document.getElementById('zona10').value!=''){
+            execu10();
+
+        }
+        if(document.getElementById('zona11').value!=''){
+            execu11();
+
+        }
+        document.getElementById('content2').style.display='block';
+
+   
+    //}
+    setTimeout(miFuncion, 10000);
+
+}
+
+execu1 = function(){
+    const archivo = document.getElementById("fichero").files[0];
+    const imagene = document.getElementById("imagen1");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+
+execu2 = function(){
+    const archivo = document.getElementById("fichero2").files[0];
+    const imagene = document.getElementById("imagen2");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+
+execu3 = function(){
+    const archivo = document.getElementById("fichero3").files[0];
+    const imagene = document.getElementById("imagen3");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+
+execu4 = function(){
+    const archivo = document.getElementById("fichero4").files[0];
+    const imagene = document.getElementById("imagen4");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+
+execu5 = function(){
+    const archivo = document.getElementById("fichero5").files[0];
+    const imagene = document.getElementById("imagen5");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+execu6 = function(){
+    const archivo = document.getElementById("fichero6").files[0];
+    const imagene = document.getElementById("imagen6");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+execu7 = function(){
+    const archivo = document.getElementById("fichero7").files[0];
+    const imagene = document.getElementById("imagen7");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+execu8 = function(){
+    const archivo = document.getElementById("fichero8").files[0];
+    const imagene = document.getElementById("imagen8");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+execu9 = function(){
+    const archivo = document.getElementById("fichero9").files[0];
+    const imagene = document.getElementById("imagen9");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+execu10 = function(){
+    const archivo = document.getElementById("fichero10").files[0];
+    const imagene = document.getElementById("imagen10");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+execu11 = function(){
+    const archivo = document.getElementById("fichero11").files[0];
+    const imagene = document.getElementById("imagen11");
+    const lector = new FileReader();
+    
+
+    lector.onloadend = function () {
+        const base64 = btoa(lector.result);
+        var variable = 'data:image/png;base64,' + base64;
+        // Aquí puedes enviar el código Base64 a la etiqueta img o a otra parte del código
+        imagene.src = variable;
+    };
+
+    lector.readAsBinaryString(archivo);
+
+}
+
+
+  //setTimeout(miFuncion, 10000);
 
