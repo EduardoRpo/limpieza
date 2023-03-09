@@ -1387,14 +1387,17 @@ function Registrar() {
                 .then((docRef) => {
                     console.log("Document written with ID: ", docRef.id);
                 })
+                setTimeout(Duplicar, 1000)
+                setTimeout(Comparar, 2000)
+            
             Swal.fire(
                 'Registro Exitoso!!!',
                 'Ha completado el registro del formato..',
                 'success'
             )
-            setTimeout(Duplicar, 1000)
-            setTimeout(Comparar, 2000)
-            setInterval("location.reload()", 10000)
+            //setTimeout(Duplicar, 1000)
+            //setTimeout(Comparar, 2000)
+            //setInterval("location.reload()", 10000)
                 .catch((error) => {
                     console.error("Error adding document: ", error);
 
