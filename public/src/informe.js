@@ -1392,9 +1392,9 @@ function Registrar() {
                 'Ha completado el registro del formato..',
                 'success'
             )
-            setTimeout(Duplicar, 1000);
-            setTimeout(Comparar, 2000);
-            setInterval("location.reload()", 3000)
+            setTimeout(Duplicar, 1000)
+            setTimeout(Comparar, 2000)
+            setInterval("location.reload()", 10000)
                 .catch((error) => {
                     console.error("Error adding document: ", error);
 
@@ -1417,6 +1417,7 @@ function Registrar() {
 
 
 }
+
 
 
 
@@ -2317,9 +2318,38 @@ Pdf = function () {
     document.getElementById('estado923').value = estado9;
     document.getElementById('estado1023').value = estado10;
     document.getElementById('estado1123').value = estado11;
-    document.getElementById('estado1223').value = estado12;
-    document.getElementById('estado1323').value = estado13;
-    document.getElementById('estado1423').value = estado14;
+    //document.getElementById('estado1223').value = estado12;
+    //document.getElementById('estado1323').value = estado13;
+    //document.getElementById('estado1423').value = estado14;
+
+
+    //----------------segunda parte
+    document.getElementById('concep123').value=concepto1;
+    document.getElementById('estado01').value=estatus1;
+    document.getElementById('concep223').value=concepto2;
+    document.getElementById('estado02').value=estatus2;
+    document.getElementById('concep323').value=concepto3;
+    document.getElementById('estado03').value=estatus3;
+    document.getElementById('concep423').value=concepto4;
+    document.getElementById('estado04').value=estatus4;
+    document.getElementById('concep523').value=concepto5;
+    document.getElementById('estado05').value=estatus5;
+    document.getElementById('concep623').value=concepto6;
+    document.getElementById('estado06').value=estatus6;
+    document.getElementById('concep723').value=concepto7;
+    document.getElementById('estado07').value=estatus7;
+    document.getElementById('concep823').value=concepto8;
+    document.getElementById('estado08').value=estatus8;
+    document.getElementById('concep923').value=concepto9;
+    document.getElementById('estado09').value=estatus9;
+    document.getElementById('concep1023').value=concepto10;
+    document.getElementById('estado010').value=estatus10;
+    document.getElementById('concep1123').value=concepto11;
+    document.getElementById('estado011').value=estatus11;
+    document.getElementById('concep1223').value=concepto12;
+    document.getElementById('estado012').value=estatus12;
+
+    document.getElementById('observacionesArea2').value=observacionesArea;
 
 
 
@@ -2492,7 +2522,7 @@ function Comparar() {
 
    
     //}
-    setTimeout(miFuncion, 10000);
+    setTimeout(miFuncion, 5000);
 
 }
 
@@ -2680,3 +2710,9 @@ execu11 = function(){
 
   //setTimeout(miFuncion, 10000);
 
+
+  function Test(){
+
+    setTimeout(Duplicar, 1000);
+    setTimeout(Comparar, 2000);
+}
