@@ -98,6 +98,16 @@ function Registrar() {
                 let cantidad3 = document.getElementById('cantidad3').value;
                 let cantidad4 = document.getElementById('cantidad4').value;
 
+                let insumo1 = document.getElementById('Insumo1').value;
+                let insumo2 = document.getElementById('Insumo2').value;
+                let insumo3 = document.getElementById('Insumo3').value; 
+                let insumo4 = document.getElementById('Insumo4').value;
+
+                let cantidadIn1 = document.getElementById('cantidadIn1').value;
+                let cantidadIn2 = document.getElementById('cantidadIn2').value;
+                let cantidadIn3 = document.getElementById('cantidadIn3').value;
+                let cantidadIn4 = document.getElementById('cantidadIn4').value;
+
 
 
                 db.collection("Maquinarias").add({
@@ -113,6 +123,14 @@ function Registrar() {
                     Cantidad2:cantidad2,
                     Cantidad3:cantidad3,
                     Cantidad4:cantidad4,
+                    Insumo1:insumo1,
+                    Insumo2:insumo2,
+                    Insumo3:insumo3,
+                    Insumo4:insumo4,
+                    CantidadInsu1:cantidadIn1,
+                    CantidadInsu2:cantidadIn2,
+                    CantidadInsu3:cantidadIn3,
+                    CantidadInsu4:cantidadIn4,
 
                 })
                     .then((docRef) => {
@@ -235,6 +253,16 @@ function Consultar() {
                         let Cantidad3 = `${doc.data().Cantidad3}`;
                         let Cantidad4 = `${doc.data().Cantidad4}`;
 
+                        let CantidadInsu1 = `${doc.data().CantidadInsu1}`;
+                        let CantidadInsu2 = `${doc.data().CantidadInsu2}`;
+                        let CantidadInsu3 = `${doc.data().CantidadInsu3}`;
+                        let CantidadInsu4 = `${doc.data().CantidadInsu4}`;
+
+                        let Insumo1 = `${doc.data().Insumo1}`;
+                        let Insumo2 = `${doc.data().Insumo2}`;
+                        let Insumo3 = `${doc.data().Insumo3}`;
+                        let Insumo4 = `${doc.data().Insumo4}`;
+
                         document.getElementById('centroCostos').value = centroCostos;
                         document.getElementById('maquinaria1').value = maquina1;
                         document.getElementById('maquinaria2').value = maquina2;
@@ -246,6 +274,17 @@ function Consultar() {
                          document.getElementById('cantidad2').value=Cantidad2;
                          document.getElementById('cantidad3').value=Cantidad3;
                          document.getElementById('cantidad4').value=Cantidad4;
+
+
+                         document.getElementById('Insumo1').value=Insumo1;
+                         document.getElementById('Insumo2').value=Insumo2;
+                         document.getElementById('Insumo3').value=Insumo3; 
+                         document.getElementById('Insumo4').value=Insumo4;
+         
+                         document.getElementById('cantidadIn1').value=CantidadInsu1;
+                         document.getElementById('cantidadIn2').value=CantidadInsu2;
+                         document.getElementById('cantidadIn3').value=CantidadInsu3;
+                         document.getElementById('cantidadIn4').value=CantidadInsu4;
 
 
                         elimi = function () {
